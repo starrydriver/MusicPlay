@@ -1,0 +1,23 @@
+{
+  "name": "musicplay",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "astro": "^5.5.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "@types/pixi.js": "^4.8.9",
+    "pixi.js": "^8.8.1",
+    "typescript": "^5.8.2"
+  }
+}
