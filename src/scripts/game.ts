@@ -1,8 +1,19 @@
-import { Application, Graphics, Container, Ticker } from 'pixi.js';
+import {Application, Graphics, Container,Sprite, Assets ,Texture,Filter} from 'pixi.js';
+import { GlowFilter } from 'pixi-filters';
 // 画布管理类
 class CanvasManager {
     public app: Application;
     public container: Container;
+
+    // 星空效果相关变量
+    private starTexture: any;
+    private starAmount = 1000;
+    private stars: { sprite: Sprite; z: number; x: number; y: number }[] = [];
+    private cameraZ = 0;
+    private fov = 20;
+    private baseSpeed = 0.025; // 恒定速度
+    private starStretch = 5;
+    private starBaseSize = 0.05;
 
     constructor() {
         this.app = new Application();
@@ -11,13 +22,134 @@ class CanvasManager {
     // 初始化画布
     public async init(): Promise<void> {
         await this.app.init({
-            background: '#1099bb', // 蓝色背景
+            background: '#3c3c6d', // 背景
             resizeTo: window,      // 自动调整大小
         });
         // 将 Canvas 添加到页面
-        document.body.appendChild(this.app.canvas);
+        document.getElementById('musicGame')!.appendChild(this.app.canvas);
         // 将容器添加到舞台
         this.app.stage.addChild(this.container);
+        this.app.stage.interactive = true;
+        this.app.stage.hitArea = this.app.screen;
+        // 加载星星纹理
+        this.starTexture = await Assets.load('https://pixijs.com/assets/star.png');
+        // 初始化星空效果
+        this.initStars();
+        this.startAnimation();
+    }
+    // 初始化星星
+    private initStars(): void {
+        for (let i = 0; i < this.starAmount; i++) {
+            const star = {
+                sprite: new Sprite(this.starTexture),
+                z: 0,
+                x: 0,
+                y: 0,
+            };
+            star.sprite.anchor.set(0.5, 0.7);
+            this.randomizeStar(star, true);
+            this.container.addChild(star.sprite);
+            this.stars.push(star);
+        }
+    }
+    // 随机化星星位置
+    private randomizeStar(star: { z: number; x: number; y: number }, initial: boolean): void {
+        star.z = initial ? Math.random() * 2000 : this.cameraZ + Math.random() * 1000 + 2000;
+
+        const deg = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 50 + 1;
+
+        star.x = Math.cos(deg) * distance;
+        star.y = Math.sin(deg) * distance;
+    }
+    // 启动动画
+    private startAnimation(): void {
+        // 动画循环
+        this.app.ticker.add((time) => {
+            // 恒定速度移动
+            this.cameraZ += time.deltaTime * 10 * this.baseSpeed;
+            // 更新星星位置
+            for (let i = 0; i < this.starAmount; i++) {
+                const star = this.stars[i];
+                // 如果星星超出摄像机范围，重新随机化位置
+                if (star.z < this.cameraZ) this.randomizeStar(star, false);
+                // 透视投影：将 3D 坐标映射到 2D 屏幕
+                const z = star.z - this.cameraZ;
+                star.sprite.x = star.x * (this.fov / z) * this.app.renderer.screen.width + this.app.renderer.screen.width / 2;
+                star.sprite.y = star.y * (this.fov / z) * this.app.renderer.screen.width + this.app.renderer.screen.height / 2;
+                // 计算星星的缩放和旋转
+                const dxCenter = star.sprite.x - this.app.renderer.screen.width / 2;
+                const dyCenter = star.sprite.y - this.app.renderer.screen.height / 2;
+                const distanceCenter = Math.sqrt(dxCenter * dxCenter + dyCenter * dyCenter);
+                const distanceScale = Math.max(0, (2000 - z) / 2000);
+                // 设置星星的大小
+                star.sprite.scale.x = distanceScale * this.starBaseSize;
+                star.sprite.scale.y = distanceScale * this.starBaseSize
+                    + (distanceScale * this.baseSpeed * this.starStretch * distanceCenter) / this.app.renderer.screen.width;
+                // 设置星星的旋转（朝向屏幕中心）
+                star.sprite.rotation = Math.atan2(dyCenter, dxCenter) + Math.PI / 2;
+            }
+        });
+    }
+}
+//触发虚线类
+class DashedLine {
+	private app: Application;
+	private container: Container;
+	public dashedLine: Sprite;
+	private canvas: HTMLCanvasElement;
+	public dashedLineCanvas: CanvasRenderingContext2D;
+	constructor(app: Application, container: Container) {
+		this.app = app;
+		this.container = container;
+		this.canvas = document.createElement('canvas');
+		this.canvas.width = window.innerWidth;
+		this.canvas.height = window.innerHeight;
+		this.dashedLineCanvas = this.canvas.getContext('2d')!;
+		this.dashedLine = new Sprite();
+		this.container.addChild(this.dashedLine); // 将音乐框添加到容器
+		// 初始化音乐框
+		this.updateDashedLine();
+		// 监听窗口大小变化
+		window.addEventListener('resize', () => this.updateDashedLine());
+	}
+	   // 更新触发线的样式
+    private updateDashedLine(): void {
+        const dpr = window.devicePixelRatio || 1;
+        const windowWidth = window.innerWidth * dpr;
+        const windowHeight = window.innerHeight * dpr;
+        // 动态调整 canvas 大小
+        this.canvas.width = windowWidth;
+        this.canvas.height = windowHeight;
+        this.canvas.style.width = `${window.innerWidth}px`;
+        this.canvas.style.height = `${window.innerHeight}px`;
+        this.dashedLineCanvas.scale(dpr, dpr);
+        // 清空画布
+        this.dashedLineCanvas.clearRect(0, 0, windowWidth, windowHeight);
+        // 设置虚线样式
+        this.dashedLineCanvas.setLineDash([windowWidth * 0.01, windowWidth * 0.005]); // 虚线长度为 10，间隔为 5
+        this.dashedLineCanvas.lineWidth = 2; // 线条宽度
+        this.dashedLineCanvas.strokeStyle = '#ffffff'; // 线条颜色
+        // 绘制虚线
+        this.dashedLineCanvas.beginPath();
+        this.dashedLineCanvas.moveTo(0, windowHeight * 0.6); // 起点
+        this.dashedLineCanvas.lineTo(windowWidth, windowHeight * 0.6); // 终点
+        this.dashedLineCanvas.stroke();
+        // 更新纹理
+        const texture = Texture.from(this.canvas);
+        this.dashedLine.texture = texture; // 更新 Sprite 的纹理
+        this.dashedLine.width = window.innerWidth;
+        this.dashedLine.height = window.innerHeight;
+        // 创建发光滤镜
+        const glowFilter = new GlowFilter({
+            distance: 10, // 发光距离
+            outerStrength: 2, // 外部发光强度
+            innerStrength: 0, // 内部发光强度
+            color: 0xf9c54e, // 发光颜色（黄色）
+            quality: 0.5, // 质量
+        });
+        // 将滤镜应用到虚线
+        this.dashedLine.filters = [glowFilter];
     }
 }
 // 触发线类
@@ -25,7 +157,6 @@ class TriggerLine {
     private app: Application;
     private container: Container;
     public line: Graphics; // 触发线图形
-
     constructor(app: Application, container: Container) {
         this.app = app;
         this.container = container;
@@ -36,28 +167,57 @@ class TriggerLine {
         // 监听窗口大小变化
         window.addEventListener('resize', () => this.updateTriggerLine());
     }
-       // 更新触发线的大小和位置
-       private updateTriggerLine(): void {
+       // 更新触发线的样式
+    private updateTriggerLine(): void {
         const windowWidth = window.innerWidth; // 窗口宽度
         const windowHeight = window.innerHeight; // 窗口高度
         // 设置触发线的宽度为窗口宽度的 80%，高度为窗口高度的 2%
-        const lineWidth = windowWidth * 0.8;
-        const lineHeight = windowHeight * 0.02;
+        const lineWidth = windowWidth * 0.5;
+        const lineHeight = windowHeight * 0.01;
         // 设置触发线的位置为窗口底部附近
         const lineX = (windowWidth - lineWidth) / 2; // 水平居中
-        const lineY = windowHeight * 0.9; // 距离窗口底部 10%
+        const lineY = windowHeight * 0.8; // 距离窗口底部 10%
         // 清空之前的图形
         this.line.clear();
         // 重新绘制触发线
-        this.line.fill(0xFFFF00); // 黄色
-        this.line.rect(0, 0, lineWidth, lineHeight); // 绘制矩形
+        this.line.fill(0xf9c54e); // 黄色
+        this.line.roundRect(0, 0, lineWidth, lineHeight,5); // 绘制矩形
         this.line.fill();
+        // 创建发光滤镜
+        const glowFilter = new GlowFilter({
+            distance: 10, // 发光距离
+            outerStrength: 2, // 外部发光强度
+            innerStrength: 0, // 内部发光强度
+            color: 0xf9c54e, // 发光颜色（黄色）
+            quality: 0.5, // 质量
+        });
+        // 将滤镜应用到触发线
+        this.line.filters = [glowFilter];
         // 设置触发线的位置
         this.line.x = lineX;
         this.line.y = lineY;
     }
 }
-
+//触发区类
+class TriggerArea {
+	public AreaY:number;
+	public triggerArray: NoteBar[];
+	constructor(y:number){
+		this.AreaY = y;
+		this.triggerArray = [];
+	}
+    public init():void{
+        console.log('初始化触发区');
+    }
+    //触发区数组
+    public addTrigger(bar:NoteBar):void{
+        if (bar.bar.y > this.AreaY && this.triggerArray.includes(bar) === false) {
+            this.triggerArray.push(bar); // 将音符添加到数组
+            console.log('barY:', bar.bar.y+",AreaY:",this.AreaY);
+            console.log('音符注入数组');
+        }
+    }
+}
 // 音符类
 class NoteBar {
     private app: Application;
@@ -71,42 +231,121 @@ class NoteBar {
         this.speed = speed;
         // 创建长条图形
         this.bar = new Graphics();
-        this.bar.fill(0x00FF00); // 绿色
-        this.bar.rect(0, 0, 50, 200); // 宽度 50，高度 200
-        this.bar.fill();
-        this.bar.x = x; // 设置初始 x 位置
-        this.bar.y = -200; // 从屏幕顶部开始
         // 将长条添加到容器
         this.container.addChild(this.bar);
+        // 初始化长条
+        this.updateSize(x);
+        window.addEventListener('resize', () => this.updateSize(x));
     }
-
+    //更新样式
+    public updateSize(x: number): void {
+        const windowWidth = window.innerWidth; // 窗口宽度
+        const windowHeight = window.innerHeight; // 窗口高度
+        const barWidth = windowWidth * 0.08;
+        const barHeight = windowHeight * 0.02;
+        this.bar.fill(0x83e368); // 绿色
+        this.bar.roundRect(0, 0, barWidth, barHeight,10);
+        this.bar.fill();
+        // 创建发光滤镜
+        const glowFilter = new GlowFilter({
+            distance: 20, // 发光距离
+            outerStrength: 2, // 外部发光强度
+            innerStrength: 1, // 内部发光强度
+            color: 0xcff9b1, // 发光颜色（绿色）
+            quality: 0.5, // 质量
+        });
+        // 将滤镜应用到触发线
+        this.bar.filters = [glowFilter];
+        this.bar.x = x; // 设置初始 x 位置
+        this.bar.y = -200; // 从屏幕顶部开始
+    }
     // 更新音符位置
-    public update(delta: number): void {
+    public update(delta: number,border:number,array:NoteBar[]): void {
         this.bar.y += this.speed * delta; // 根据速度下落
         // 如果音符超出屏幕，移除它
-        if (this.bar.y > this.app.screen.height) {
+        if (this.bar.y > border) {
             this.container.removeChild(this.bar);
+            array.splice(array.indexOf(this), 1); // 从数组中移除
             this.bar.destroy(); // 销毁图形
+            console.log('音符消失');
         }
     }
 }
-
+//鼠标触发
+class MouseTrigger {
+    private keys: { [key: string]: boolean } = {};
+    constructor() {
+        this.init();
+    }
+    // 初始化键盘事件监听
+    private init(): void {
+        document.addEventListener('keydown', this.handleKeyDown.bind(this));
+        document.addEventListener('keyup', this.handleKeyUp.bind(this));
+    }
+    // 处理键盘按下事件
+    private handleKeyDown(event: KeyboardEvent): void {
+        this.keys[event.key] = true;
+        this.checkKeys();
+    }
+    // 处理键盘松开事件
+    private handleKeyUp(event: KeyboardEvent): void {
+        this.keys[event.key] = false;
+    }
+    // 检查按键状态并触发事件
+    private checkKeys(): void {
+        if (this.keys['a']) {
+            console.log('按下 A');
+        }
+        if (this.keys['s']) {
+            console.log('按下 S');
+        }
+        if (this.keys['d']) {
+            console.log('按下 D');
+        }
+        if (this.keys['j']) {
+            console.log('按下 J');
+        }
+        if (this.keys['k']) {
+            console.log('按下 K');
+        }
+        if (this.keys['l']) {
+            console.log('按下 L');
+        }
+        if (this.keys['Enter']) {
+            console.log('按下 Enter');
+        }
+        if (this.keys['Escape']) {
+            console.log('按下 Escape');
+        }
+    }
+}
 class MusicGame {
     private canvasManager: CanvasManager;
     private notes: NoteBar[]; // 存储所有音符
+    private myDashedLine: DashedLine; // 虚线
+    private myTriggerArea: TriggerArea; // 触发区
     private myline: TriggerLine; // 触发线
+    private mouseTrigger: MouseTrigger; // 鼠标触发
     private noteSpawnInterval: number; // 音符生成间隔（毫秒）
 
     constructor() {
         this.canvasManager = new CanvasManager();
         this.notes = [];
+        this.myDashedLine = new DashedLine(this.canvasManager.app, this.canvasManager.container);
+        this.myTriggerArea = new TriggerArea(this.myDashedLine.dashedLineCanvas.canvas.height * 0.6);
         this.myline = new TriggerLine(this.canvasManager.app, this.canvasManager.container);
+        this.mouseTrigger = new MouseTrigger();
         this.noteSpawnInterval = 1000; // 每 1 秒生成一个音符
     }
 
     // 初始化应用
     public async init(): Promise<void> {
         await this.canvasManager.init();
+        // 创建虚线
+        this.canvasManager.container.addChild(this.myDashedLine.dashedLine);
+        // 创建触发区
+        this.myTriggerArea.init();
+        console.log('dashedLineY:', window.innerHeight * 0.5);
         // 创建触发线
         this.canvasManager.container.addChild(this.myline.line);
         // 启动动画循环
@@ -124,7 +363,11 @@ class MusicGame {
     private startAnimation(): void {
         this.canvasManager.app.ticker.add((time) => {
             // 更新所有音符的位置
-            this.notes.forEach((note) => note.update(time.deltaTime));
+            this.notes.forEach((note) => note.update(time.deltaTime,this.myline.line.y,this.notes));
+            // 更新触发区
+            this.notes.forEach((note) => {
+                this.myTriggerArea.addTrigger(note);
+            });
             // 移除已经销毁的音符
             this.notes = this.notes.filter((note) => note.bar.parent !== null);
         });
@@ -140,16 +383,29 @@ class MusicGame {
 
     // 获取随机 x 位置
     private getRandomX(): number {
-        const minX = 50; // 最小 x 位置
-        const maxX = this.canvasManager.app.screen.width - 50; // 最大 x 位置
-        return Math.floor(Math.random() * (maxX - minX)) + minX;
-    }
-
+		const originX = this.myline.line.x+window.innerWidth*0.005;
+		const intervalX = window.innerWidth*0.082;
+		const barX: { [key: string]: number } = {
+			'noteA': originX,
+			'noteX': originX + intervalX,
+			'noteD': originX + intervalX * 2,
+			'noteJ': originX + intervalX * 3,
+			'noteK': originX + intervalX * 4,
+			'noteL': originX + intervalX * 5,
+		}; // 音符 x 位置
+		// console.log('originX:', originX);
+		// console.log('intervalX:', intervalX);
+		// console.log('barX:', barX);
+        // 获取所有键的数组
+        const keys = Object.keys(barX);
+        // 生成基于键数量的随机索引
+        const randomIndex = Math.floor(Math.random() * keys.length);
+        // 通过随机键名获取对应值
+        return barX[keys[randomIndex]];
+	}
     // 获取随机速度
     private getRandomSpeed(): number {
-        const minSpeed = 2; // 最小速度
-        const maxSpeed = 5; // 最大速度
-        return Math.random() * (maxSpeed - minSpeed) + minSpeed;
+        return window.innerHeight * 0.005; // 随机速度
     }
 }
 

@@ -8,21 +8,22 @@
   <body>
     <style>
       /* 确保 body 和 html 元素没有边距和内边距 */
-      html, body {
+      .music-game{
           margin: 0;
           padding: 0;
           overflow: hidden; /* 隐藏滚动条 */
           width: 100%;
           height: 100%;
       }
-
-      /* 确保画布占满整个窗口 */
-      canvas {
-          display: block; /* 避免画布下方出现空白 */
-          width: 100%;
-          height: 100%;
+      body, html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* 隐藏滚动条 */
+        width: 100%;
+        height: 100%;
       }
-  </style>
+    </style>
+    <div class="music-game" id="musicGame"></div>
     <script src="../scripts/game.ts"></script>
   </body>
 </html>
