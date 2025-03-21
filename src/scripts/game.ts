@@ -132,8 +132,8 @@ class DashedLine {
         this.dashedLineCanvas.strokeStyle = '#ffffff'; // 线条颜色
         // 绘制虚线
         this.dashedLineCanvas.beginPath();
-        this.dashedLineCanvas.moveTo(0, windowHeight * 0.6); // 起点
-        this.dashedLineCanvas.lineTo(windowWidth, windowHeight * 0.6); // 终点
+        this.dashedLineCanvas.moveTo(0, windowHeight * 0.5); // 起点
+        this.dashedLineCanvas.lineTo(windowWidth, windowHeight * 0.5); // 终点
         this.dashedLineCanvas.stroke();
         // 更新纹理
         const texture = Texture.from(this.canvas);
@@ -213,8 +213,8 @@ class TriggerArea {
     public addTrigger(bar:NoteBar):void{
         if (bar.bar.y > this.AreaY && this.triggerArray.includes(bar) === false) {
             this.triggerArray.push(bar); // 将音符添加到数组
-            console.log('barY:', bar.bar.y+",AreaY:",this.AreaY);
-            console.log('音符注入数组');
+            //console.log('barY:', bar.bar.y+",AreaY:",this.AreaY);
+            //console.log('音符注入数组');
         }
     }
 }
@@ -224,11 +224,14 @@ class NoteBar {
     private container: Container;
     public bar: Graphics; // 长条图形
     private speed: number; // 下落速度
-
-    constructor(app: Application, container: Container, x: number, speed: number) {
+    public noteType: string; // 音符类型
+    public isAdd: boolean; // 是否添加到过触发区
+    constructor(app: Application, container: Container, x: number, speed: number,type:string) {
         this.app = app;
         this.container = container;
         this.speed = speed;
+        this.noteType = type;
+        this.isAdd = false;
         // 创建长条图形
         this.bar = new Graphics();
         // 将长条添加到容器
@@ -263,9 +266,10 @@ class NoteBar {
     public update(delta: number,border:number,array:NoteBar[]): void {
         this.bar.y += this.speed * delta; // 根据速度下落
         // 如果音符超出屏幕，移除它
-        if (this.bar.y > border) {
+        if (this.bar.y > border||this.isAdd == true) {
             this.container.removeChild(this.bar);
             array.splice(array.indexOf(this), 1); // 从数组中移除
+            this.container.removeChild(this.bar); 
             this.bar.destroy(); // 销毁图形
             console.log('音符消失');
         }
@@ -274,7 +278,9 @@ class NoteBar {
 //鼠标触发
 class MouseTrigger {
     private keys: { [key: string]: boolean } = {};
-    constructor() {
+    private noteArray: NoteBar[];
+    constructor(noteArray: NoteBar[]) {
+        this.noteArray = noteArray;
         this.init();
     }
     // 初始化键盘事件监听
@@ -294,22 +300,52 @@ class MouseTrigger {
     // 检查按键状态并触发事件
     private checkKeys(): void {
         if (this.keys['a']) {
-            console.log('按下 A');
+            this.noteArray.forEach((note)=> {
+                if (note.noteType == 'noteA') {
+                    note.isAdd = true;
+                    console.log('触发音符A');
+                }
+            });
         }
         if (this.keys['s']) {
-            console.log('按下 S');
+            this.noteArray.forEach((note)=> {
+                if (note.noteType == 'noteS') {
+                    note.isAdd = true;
+                    console.log('触发音符S');
+                }
+            });
         }
         if (this.keys['d']) {
-            console.log('按下 D');
+            this.noteArray.forEach((note)=> {
+                if (note.noteType == 'noteD') {
+                    note.isAdd = true;
+                    console.log('触发音符D');
+                }
+            });
         }
         if (this.keys['j']) {
-            console.log('按下 J');
+            this.noteArray.forEach((note)=> {
+                if (note.noteType == 'noteJ') {
+                    note.isAdd = true;
+                    console.log('触发音符J');
+                }
+            });
         }
         if (this.keys['k']) {
-            console.log('按下 K');
+            this.noteArray.forEach((note)=> {
+                if (note.noteType == 'noteK') {
+                    note.isAdd = true;
+                    console.log('触发音符K');
+                }
+            });
         }
         if (this.keys['l']) {
-            console.log('按下 L');
+            this.noteArray.forEach((note)=> {
+                if (note.noteType == 'noteL') {
+                    note.isAdd = true;
+                    console.log('触发音符L');
+                }
+            });
         }
         if (this.keys['Enter']) {
             console.log('按下 Enter');
@@ -320,6 +356,7 @@ class MouseTrigger {
     }
 }
 class MusicGame {
+    private barX: { [key: string]: number };
     private canvasManager: CanvasManager;
     private notes: NoteBar[]; // 存储所有音符
     private myDashedLine: DashedLine; // 虚线
@@ -332,9 +369,19 @@ class MusicGame {
         this.canvasManager = new CanvasManager();
         this.notes = [];
         this.myDashedLine = new DashedLine(this.canvasManager.app, this.canvasManager.container);
-        this.myTriggerArea = new TriggerArea(this.myDashedLine.dashedLineCanvas.canvas.height * 0.6);
+        this.myTriggerArea = new TriggerArea(this.myDashedLine.dashedLineCanvas.canvas.height * 0.5);
         this.myline = new TriggerLine(this.canvasManager.app, this.canvasManager.container);
-        this.mouseTrigger = new MouseTrigger();
+        const originX = this.myline.line.x+window.innerWidth*0.005;
+        const intervalX = window.innerWidth*0.082;
+        this.barX= {
+            'noteA': originX,
+            'noteS': originX + intervalX,
+            'noteD': originX + intervalX * 2,
+            'noteJ': originX + intervalX * 3,
+            'noteK': originX + intervalX * 4,
+            'noteL': originX + intervalX * 5,
+        };
+        this.mouseTrigger = new MouseTrigger(this.myTriggerArea.triggerArray);
         this.noteSpawnInterval = 1000; // 每 1 秒生成一个音符
     }
 
@@ -345,7 +392,6 @@ class MusicGame {
         this.canvasManager.container.addChild(this.myDashedLine.dashedLine);
         // 创建触发区
         this.myTriggerArea.init();
-        console.log('dashedLineY:', window.innerHeight * 0.5);
         // 创建触发线
         this.canvasManager.container.addChild(this.myline.line);
         // 启动动画循环
@@ -355,8 +401,8 @@ class MusicGame {
     }
 
     // 创建音符
-    private createNoteBar(x: number, speed: number): void {
-        const noteBar = new NoteBar(this.canvasManager.app, this.canvasManager.container, x, speed);
+    private createNoteBar(x: number, type: string, speed: number): void {
+        const noteBar = new NoteBar(this.canvasManager.app, this.canvasManager.container, x, speed,type);
         this.notes.push(noteBar);
     }
     // 启动动画循环
@@ -375,33 +421,21 @@ class MusicGame {
     // 启动音符生成器
     private startNoteSpawner(): void {
         setInterval(() => {
-            const x = this.getRandomX(); // 随机 x 位置
+            const [type, x] = this.getRandomX(); // 随机 x 位置
             const speed = this.getRandomSpeed(); // 随机速度
-            this.createNoteBar(x, speed); // 创建音符
+            this.createNoteBar(x, type, speed); // 创建音符
         }, this.noteSpawnInterval);
     }
 
     // 获取随机 x 位置
-    private getRandomX(): number {
-		const originX = this.myline.line.x+window.innerWidth*0.005;
-		const intervalX = window.innerWidth*0.082;
-		const barX: { [key: string]: number } = {
-			'noteA': originX,
-			'noteX': originX + intervalX,
-			'noteD': originX + intervalX * 2,
-			'noteJ': originX + intervalX * 3,
-			'noteK': originX + intervalX * 4,
-			'noteL': originX + intervalX * 5,
-		}; // 音符 x 位置
-		// console.log('originX:', originX);
-		// console.log('intervalX:', intervalX);
-		// console.log('barX:', barX);
+    private getRandomX(): [string, number] {
+		const barX = this.barX; // 音符 x 位置
         // 获取所有键的数组
         const keys = Object.keys(barX);
         // 生成基于键数量的随机索引
         const randomIndex = Math.floor(Math.random() * keys.length);
         // 通过随机键名获取对应值
-        return barX[keys[randomIndex]];
+        return [keys[randomIndex], barX[keys[randomIndex]]];
 	}
     // 获取随机速度
     private getRandomSpeed(): number {
