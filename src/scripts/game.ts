@@ -1,10 +1,12 @@
-import {Application, Graphics, Container,Sprite, Assets ,Texture,Filter} from 'pixi.js';
+import {Application, Graphics, Container,Sprite, Assets ,Texture,Particle, ParticleContainer,Filter, TextureSource, type ParticleOptions} from 'pixi.js';
 import { GlowFilter } from 'pixi-filters';
 // 画布管理类
 class CanvasManager {
     public app: Application;
     public container: Container;
-
+    //粒子变量
+    private textureLoad!:TextureSource<any>;
+    public texture!: Texture;
     // 星空效果相关变量
     private starTexture: any;
     private starAmount = 1000;
@@ -18,6 +20,7 @@ class CanvasManager {
     constructor() {
         this.app = new Application();
         this.container = new Container();
+        // 粒子效果
     }
     // 初始化画布
     public async init(): Promise<void> {
@@ -31,11 +34,32 @@ class CanvasManager {
         this.app.stage.addChild(this.container);
         this.app.stage.interactive = true;
         this.app.stage.hitArea = this.app.screen;
+        // 加载粒子纹理
+        this.textureLoad = await Assets.load('/images/barParticle.svg');
+        this.texture = new Texture(this.textureLoad);
         // 加载星星纹理
         this.starTexture = await Assets.load('https://pixijs.com/assets/star.png');
         // 初始化星空效果
         this.initStars();
         this.startAnimation();
+                // this.app.ticker.add(() => {
+                //     container.update();
+                //     particles.forEach(particle => {
+                //         // 持续施加扩散力
+                //         particle.x += Math.cos(particle.angle) * particle.speed;
+                //         particle.y += Math.sin(particle.angle) * particle.speed;
+                //         // 施加下落加速度
+                //         particle.speed *= 0.98;      // 速度衰减（空气阻力）
+                //         particle.y += particle.gravity;  // 下落速度递增
+                //         particle.gravity *= 1.02;    // 重力逐渐增强
+                //         if (particle.y > this.app.screen.height + 100 || particle.speed < 0.1) {
+                //             // 粒子超出屏幕范围或速度小于0.1，则移除粒子
+                //             container.removeParticle(particle);
+                //             particles.splice(particles.indexOf(particle), 1);
+                //             console.log('粒子数量：', particles.length);
+                //         }
+                //     });
+                // });
     }
     // 初始化星星
     private initStars(): void {
@@ -218,6 +242,16 @@ class TriggerArea {
         }
     }
 }
+//粒子类
+class newparticle extends Particle {
+    public speed: number =  2 + Math.random() * 3;
+    public gravity: number = 0.5;
+    public angle = Math.random() * Math.PI * 2;
+    constructor(options: Texture<TextureSource<any>> | ParticleOptions) {
+        super(options);
+    }
+    
+}
 // 音符类
 class NoteBar {
     private app: Application;
@@ -226,7 +260,11 @@ class NoteBar {
     private speed: number; // 下落速度
     public noteType: string; // 音符类型
     public isAdd: boolean; // 是否添加到过触发区
-    constructor(app: Application, container: Container, x: number, speed: number,type:string) {
+    private particles: newparticle[] = [];
+    private particleContainer: ParticleContainer= new ParticleContainer();
+    private barTexture: Texture<TextureSource<any>>;
+    
+    constructor(app: Application, container: Container, x: number, speed: number,type:string,barTexture:Texture<TextureSource<any>>) {
         this.app = app;
         this.container = container;
         this.speed = speed;
@@ -239,6 +277,8 @@ class NoteBar {
         // 初始化长条
         this.updateSize(x);
         window.addEventListener('resize', () => this.updateSize(x));
+        //粒子
+        this.barTexture = barTexture;
     }
     //更新样式
     public updateSize(x: number): void {
@@ -266,13 +306,53 @@ class NoteBar {
     public update(delta: number,border:number,array:NoteBar[]): void {
         this.bar.y += this.speed * delta; // 根据速度下落
         // 如果音符超出屏幕，移除它
-        if (this.bar.y > border||this.isAdd == true) {
+        if (this.bar.y > border) {
             this.container.removeChild(this.bar);
             array.splice(array.indexOf(this), 1); // 从数组中移除
-            this.container.removeChild(this.bar); 
             this.bar.destroy(); // 销毁图形
-            console.log('音符消失');
+            console.log('音符消失!');
         }
+        else if (this.isAdd == true) {
+            this.container.removeChild(this.bar);
+            array.splice(array.indexOf(this), 1); // 从数组中移除
+            this.particlePlay();
+            this.bar.destroy(); // 销毁图形
+            console.log('节拍触发!');
+        }
+    }
+    public particlePlay():void{
+        this.container.addChild(this.particleContainer);
+        for (let i = 0; i < 50; i++) {
+            const particle = new newparticle({
+                texture: this.barTexture,
+                x: this.bar.x,
+                y: this.bar.y,
+                tint: 0xf3f9fc,
+                scaleX: 0.1,
+                scaleY: 0.1,
+                alpha: 0.95,
+            });
+            this.particleContainer.addParticle(particle);
+            this.particles.push(particle);
+        }
+        this.app.ticker.add(() => {
+            this.particleContainer.update();
+            this.particles.forEach(particle => {
+                // 持续施加扩散力
+                particle.x += Math.cos(particle.angle) * particle.speed;
+                particle.y += Math.sin(particle.angle) * particle.speed;
+                // 施加下落加速度
+                particle.speed *= 0.98;      // 速度衰减（空气阻力）
+                particle.y += particle.gravity;  // 下落速度递增
+                particle.gravity *= 1.02;    // 重力逐渐增强
+                if (particle.y > this.app.screen.height + 100 || particle.speed < 0.1) {
+                    // 粒子超出屏幕范围或速度小于0.1，则移除粒子
+                    this.particleContainer.removeParticle(particle);
+                    this.particles.splice(this.particles.indexOf(particle), 1);
+                    console.log('粒子数量：', this.particles.length);
+                }
+            });
+        });
     }
 }
 //鼠标触发
@@ -402,7 +482,7 @@ class MusicGame {
 
     // 创建音符
     private createNoteBar(x: number, type: string, speed: number): void {
-        const noteBar = new NoteBar(this.canvasManager.app, this.canvasManager.container, x, speed,type);
+        const noteBar = new NoteBar(this.canvasManager.app, this.canvasManager.container, x, speed,type,this.canvasManager.texture);
         this.notes.push(noteBar);
     }
     // 启动动画循环
