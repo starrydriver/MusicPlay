@@ -469,9 +469,11 @@ class MouseTrigger {
     private keys: { [key: string]: boolean } = {};
     private noteArray: NoteBar[];
     public linearBox: Graphics[];
-    constructor(noteArray: NoteBar[], linearBox: Graphics[]) {
+    private dustManager: DustManager[];
+    constructor(noteArray: NoteBar[], linearBox: Graphics[],dustManager: DustManager[]) {
         this.noteArray = noteArray;
         this.linearBox = linearBox;
+        this.dustManager = dustManager;
         this.init();
     }
     // 初始化键盘事件监听
@@ -492,6 +494,7 @@ class MouseTrigger {
     private checkKeysDown(): void {
         if (this.keys['a']) {
             this.linearBox[0].visible = true;
+            this.dustManager[0].isKeyPressed = true;
             this.noteArray.forEach((note)=> {
                 if (note.noteType == 'noteA') {
                     note.isAdd = true;
@@ -501,6 +504,7 @@ class MouseTrigger {
         }
         if (this.keys['s']) {
             this.linearBox[1].visible = true;
+            this.dustManager[1].isKeyPressed = true;
             this.noteArray.forEach((note)=> {
                 if (note.noteType == 'noteS') {
                     note.isAdd = true;
@@ -510,6 +514,7 @@ class MouseTrigger {
         }
         if (this.keys['d']) {
             this.linearBox[2].visible = true;
+            this.dustManager[2].isKeyPressed = true;
             this.noteArray.forEach((note)=> {
                 if (note.noteType == 'noteD') {
                     note.isAdd = true;
@@ -519,6 +524,7 @@ class MouseTrigger {
         }
         if (this.keys['j']) {
             this.linearBox[3].visible = true;
+            this.dustManager[3].isKeyPressed = true;
             this.noteArray.forEach((note)=> {
                 if (note.noteType == 'noteJ') {
                     note.isAdd = true;
@@ -529,6 +535,7 @@ class MouseTrigger {
         if (this.keys['k']) {
             this.noteArray.forEach((note)=> {
                 this.linearBox[4].visible = true;
+                this.dustManager[4].isKeyPressed = true;
                 if (note.noteType == 'noteK') {
                     note.isAdd = true;
                     console.log('触发音符K');
@@ -537,6 +544,7 @@ class MouseTrigger {
         }
         if (this.keys['l']) {
             this.linearBox[5].visible = true;
+            this.dustManager[5].isKeyPressed = true;
             this.noteArray.forEach((note)=> {
                 if (note.noteType == 'noteL') {
                     note.isAdd = true;
@@ -554,26 +562,32 @@ class MouseTrigger {
     private checkKeysUp(): void {
         if (this.keys['a']) {
             this.linearBox[0].visible = false;
+            this.dustManager[0].isKeyPressed = false;
             this.keys['a'] = false;
         }
         if (this.keys['s']) {
             this.linearBox[1].visible = false;
+            this.dustManager[1].isKeyPressed = false;
             this.keys['s'] = false;
         }
         if (this.keys['d']) {
             this.linearBox[2].visible = false;
+            this.dustManager[2].isKeyPressed = false;
             this.keys['d'] = false;
         }
         if (this.keys['j']) {
             this.linearBox[3].visible = false;
+            this.dustManager[3].isKeyPressed = false;
             this.keys['j'] = false;
         }
         if (this.keys['k']) {
             this.linearBox[4].visible = false;
+            this.dustManager[4].isKeyPressed = false;
             this.keys['k'] = false;
         }
         if (this.keys['l']) {
             this.linearBox[5].visible = false;
+            this.dustManager[5].isKeyPressed = false;
             this.keys['l'] = false;
         }
     }
@@ -587,6 +601,7 @@ class MusicGame {
     private myTriggerArea: TriggerArea; // 触发区
     private myline: TriggerLine; // 触发线
     private mouseTrigger: MouseTrigger; // 鼠标触发
+    private myDustManager: DustManager[]=[]; // 尘埃管理器
     private noteSpawnInterval: number; // 音符生成间隔（毫秒）
 
     constructor() {
@@ -606,7 +621,13 @@ class MusicGame {
             'noteK': originX + intervalX * 4,
             'noteL': originX + intervalX * 5,
         };
-        this.mouseTrigger = new MouseTrigger(this.myTriggerArea.triggerArray, this.myLinearBox.linearBox);
+        const dustX = (window.innerWidth - (window.innerWidth * 0.5)) / 2;
+        const dustWidth = (window.innerWidth * 0.5)/6;
+        for (let i = 0; i < 6; i++) {
+            const dustManager = new DustManager(this.canvasManager.app, this.canvasManager.container,dustX+dustWidth*i);
+            this.myDustManager.push(dustManager);
+        }
+        this.mouseTrigger = new MouseTrigger(this.myTriggerArea.triggerArray, this.myLinearBox.linearBox,this.myDustManager);
         this.noteSpawnInterval = 1000; // 每 1 秒生成一个音符
     }
 
@@ -623,39 +644,10 @@ class MusicGame {
         this.startAnimation();
         // 启动音符生成器
         this.startNoteSpawner();
-        //test
-            const particles: newparticle1[] = [];
-            const container = new ParticleContainer();
-            const starTexture = await Assets.load('/images/dust.svg');
-            const texture = new Texture(starTexture);
-            let count = 0;
-            this.canvasManager.container.addChild(container);
-            this.canvasManager.app.ticker.add(() => {
-                count++;
-                // Only generate new particles when key is pressed
-                if (count >= 10 && particles.length < 30) {
-                    const particle = new newparticle1({
-                        texture,
-                    });
-                    container.addParticle(particle);
-                    particles.push(particle);
-                    count = 0;
-                }
-                // 更新粒子
-                particles.forEach(particle => {
-                    particle.update();
-                });
-                // 清理失效粒子（逆向遍历避免索引错位）
-                for (let i = particles.length - 1; i >= 0; i--) {
-                    if (!particles[i].isAlive) {
-                        container.removeParticle(particles[i]);
-                        particles.splice(i, 1);
-                    }
-                }
-                  // 可选：添加整体扰动
-                  container.x = Math.sin(Date.now() * 0.001) * 2;
-                  container.y = Math.cos(Date.now() * 0.001) * 2;
-            });
+        // 启动尘埃生成器
+        for (let i = 0; i < 6; i++) {
+            this.myDustManager[i].init();
+        }
     }
 
     // 创建音符
@@ -700,6 +692,51 @@ class MusicGame {
         return window.innerHeight * 0.005; // 随机速度
     }
 }
+class DustManager {
+    private app: Application;
+    private container: Container;
+    private boundsX: number;
+    public isKeyPressed: boolean = false;
+    constructor(app: Application, container: Container,boundsX:number) {
+        this.app = app;
+        this.container = container;
+        this.boundsX = boundsX;
+    }
+    public async init():Promise<void>{
+        //test
+        const particles: newparticle1[] = [];
+        const container = new ParticleContainer();
+        const starTexture = await Assets.load('/images/dust.svg');
+        const texture = new Texture(starTexture);
+        let count = 0;
+        this.container.addChild(container);
+        this.app.ticker.add(() => {
+            count++;
+            if (this.isKeyPressed && count >= 10 && particles.length < 30) {
+                const particle = new newparticle1({
+                    texture,
+                },this.boundsX);
+                container.addParticle(particle);
+                particles.push(particle);
+                count = 0;
+            }
+            // 更新粒子
+            particles.forEach(particle => {
+                particle.update();
+            });
+            // 清理失效粒子（逆向遍历避免索引错位）
+            for (let i = particles.length - 1; i >= 0; i--) {
+                if (!particles[i].isAlive) {
+                    container.removeParticle(particles[i]);
+                    particles.splice(i, 1);
+                }
+            }
+              // 可选：添加整体扰动
+              container.x = Math.sin(Date.now() * 0.001) * 2;
+              container.y = Math.cos(Date.now() * 0.001) * 2;
+        });
+    }
+}
 class newparticle1 extends Particle {
 	// 新增生命周期相关属性
 	public age: number = 0;
@@ -708,10 +745,11 @@ class newparticle1 extends Particle {
 	public speed: number = 0.5 + Math.random() * 0.8; // 随机速度
 	public direction: number = Math.random() * Math.PI * 2; // 初始随机方向
 	public drift: number = 0.02; // 方向随机漂移量
-	public bounds = { x: 400, y: 0, width: 300, height: 600 }; // 绑定到 myRect 的边界
+	public bounds = { x: 0, y: 0, width: (window.innerWidth * 0.5)/6, height: window.innerHeight * 0.81 }; // 绑定到 myRect 的边界
 	private myAlpha!:number;
-	constructor(options: Texture<TextureSource<any>> | ParticleOptions) {
+	constructor(options: Texture<TextureSource<any>> | ParticleOptions,boundsX:number) {
 		super(options);
+        this.bounds.x = boundsX;
 		this.initialize();
 	}
 	  // 初始化粒子位置和大小
@@ -748,9 +786,6 @@ class newparticle1 extends Particle {
 		this.y += dy;
 		// 边界约束
 		this.applyBoundaryConstraints();
-		// 随机透明度波动
-		// this.alpha += (Math.random() - 0.5) * 0.01;
-		// this.alpha = Math.min(Math.max(this.alpha, 0.3), 0.9);
 	  }
 	  // 边界限制逻辑
 	  private applyBoundaryConstraints() {
