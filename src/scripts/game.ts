@@ -1,12 +1,14 @@
-import {Application, Graphics, Container,Sprite, Assets ,Texture,Particle, ParticleContainer,Filter, TextureSource, type ParticleOptions} from 'pixi.js';
+import {Application, Graphics, Container,Sprite, Assets ,Texture,Particle, ParticleContainer,Filter, TextureSource, type ParticleOptions, BitmapText, FillGradient} from 'pixi.js';
 import { GlowFilter } from 'pixi-filters';
 // 画布管理类
 class CanvasManager {
     public app: Application;
     public container: Container;
     //粒子变量
-    private textureLoad!:TextureSource<any>;
-    public texture!: Texture;
+    private textureLoad1!:TextureSource<any>;
+    public texture1!: Texture;
+    private textureLoad2!:TextureSource<any>;
+    public texture2!: Texture;
     // 星空效果相关变量
     private starTexture: any;
     private starAmount = 1000;
@@ -35,31 +37,32 @@ class CanvasManager {
         this.app.stage.interactive = true;
         this.app.stage.hitArea = this.app.screen;
         // 加载粒子纹理
-        this.textureLoad = await Assets.load('/images/barParticle.svg');
-        this.texture = new Texture(this.textureLoad);
+        this.textureLoad1 = await Assets.load('/images/barParticle.svg');
+        this.texture1 = new Texture(this.textureLoad1);
+        this.textureLoad2 = await Assets.load('/images/dust.svg');
+        this.texture2 = new Texture(this.textureLoad2);
         // 加载星星纹理
         this.starTexture = await Assets.load('https://pixijs.com/assets/star.png');
         // 初始化星空效果
         this.initStars();
         this.startAnimation();
-                // this.app.ticker.add(() => {
-                //     container.update();
-                //     particles.forEach(particle => {
-                //         // 持续施加扩散力
-                //         particle.x += Math.cos(particle.angle) * particle.speed;
-                //         particle.y += Math.sin(particle.angle) * particle.speed;
-                //         // 施加下落加速度
-                //         particle.speed *= 0.98;      // 速度衰减（空气阻力）
-                //         particle.y += particle.gravity;  // 下落速度递增
-                //         particle.gravity *= 1.02;    // 重力逐渐增强
-                //         if (particle.y > this.app.screen.height + 100 || particle.speed < 0.1) {
-                //             // 粒子超出屏幕范围或速度小于0.1，则移除粒子
-                //             container.removeParticle(particle);
-                //             particles.splice(particles.indexOf(particle), 1);
-                //             console.log('粒子数量：', particles.length);
-                //         }
-                //     });
-                // });
+        // 文字渲染
+        this.textRender();
+    }
+    //文字渲染
+    private textRender(): void {
+        const text = new BitmapText({
+            text: ' A    S    D    J    K    L',
+            style: {
+                fontSize: 50,
+                fill: '#ffffff',
+                align: 'center',
+                letterSpacing: 9,
+            }
+        });
+        text.x = this.app.screen.width / 4;
+        text.y = this.app.screen.height / 1.2;
+        this.container.addChild(text);
     }
     // 初始化星星
     private initStars(): void {
@@ -242,15 +245,121 @@ class TriggerArea {
         }
     }
 }
-//粒子类
+//渐变框类
+class LinearBox {
+    private app: Application;
+    private container: Container;
+    public linearBox: Graphics[]; // 触发线图形
+    constructor(app: Application, container: Container,texture:Texture<TextureSource<any>>) {
+        this.app = app;
+        this.container = container;
+        this.linearBox = [];
+        // 初始化触发线
+        this.createLinearBox();
+    }
+    // 创建渐变框
+    public createLinearBox(): void {
+        const windowWidth = window.innerWidth; // 窗口宽度
+        const windowHeight = window.innerHeight; // 窗口高度
+        const lineWidth = (windowWidth * 0.5)/6;
+        const lineHeight = windowHeight * 0.81;
+        const lineX = (windowWidth - (windowWidth * 0.5)) / 2; // 水平居中
+        for (let i = 0; i < 6; i++) {
+            const myRect = new Graphics();
+                // const linearGradient = new FillGradient({
+                //     type: 'linear',
+                //     colorStops: [
+                //         { offset: 0, color: 'white' },
+                //         { offset: 1, color: '0xf3feb0' }
+                //     ],
+                //     textureSpace: 'local'
+                // })
+                // myRect.fill(linearGradient);
+                myRect.fill(0xf3f9fc);
+                myRect.rect(lineX+lineWidth*i, 0, lineWidth, lineHeight);
+                myRect.alpha = 0.6;
+                myRect.fill();
+                myRect.visible = false;
+                this.linearBox.push(myRect);
+                this.container.addChild(myRect);
+        }
+    }
+}
+//破碎粒子
 class newparticle extends Particle {
-    public speed: number =  2 + Math.random() * 3;
-    public gravity: number = 0.5;
+    public speed: number =  5 + Math.random() * 3;
+    public gravity: number = 5;
     public angle = Math.random() * Math.PI * 2;
     constructor(options: Texture<TextureSource<any>> | ParticleOptions) {
         super(options);
     }
     
+}
+//尘埃粒子
+class DustParticle extends Particle {
+    public age: number = 0;
+	public maxAge: number = 300;  // 3秒生命周期
+	public isAlive: boolean = true;
+	public speed: number = 0.5 + Math.random() * 0.8; // 随机速度
+	public direction: number = Math.random() * Math.PI * 2; // 初始随机方向
+	public drift: number = 0.02; // 方向随机漂移量
+	public bounds: { x: number; y: number; width: number; height: number }; // 绑定到 myRect 的边界
+	private myAlpha!:number;
+	constructor(options: Texture<TextureSource<any>> | ParticleOptions) {
+		super(options);
+        this.bounds = { x: 0, y: 0, width: (window.innerWidth * 0.5)/6, height: window.innerHeight * 0.81 };
+		this.initialize();
+	}
+	  private initialize() {
+		this.age = 0;
+		this.isAlive = true;
+		this.x = this.bounds.x + Math.random() * this.bounds.width;
+		this.y = this.bounds.y + Math.random() * this.bounds.height;
+		const scaleSize = 0.1 + Math.random() * 0.1;
+		this.scaleX=scaleSize;
+		this.scaleY=scaleSize;
+		this.alpha = 0.5 + Math.random() * 0.8;
+		this.myAlpha = this.alpha;
+	  }
+	  public update() {
+		if (!this.isAlive)return;
+        this.age += 1;
+        if (this.age >= this.maxAge) {
+            this.isAlive = false;
+            return;
+        }
+        // 淡出效果
+		this.alpha -= this.myAlpha/300;
+		// 随机方向漂移
+		this.direction += (Math.random() - 0.5) * this.drift;
+		// 计算运动向量
+		const dx = Math.cos(this.direction) * this.speed;
+		const dy = Math.sin(this.direction) * this.speed;
+		// 更新位置
+		this.x += dx;
+		this.y += dy;
+		// 边界约束
+		this.applyBoundaryConstraints();
+	  }
+	  // 边界限制逻辑
+	  private applyBoundaryConstraints() {
+		// X轴边界
+		if (this.x < this.bounds.x) {
+		  this.x = this.bounds.x;
+		  this.direction = Math.PI - this.direction;
+		} else if (this.x > this.bounds.x + this.bounds.width) {
+		  this.x = this.bounds.x + this.bounds.width;
+		  this.direction = Math.PI - this.direction;
+		}
+		// Y轴边界
+		if (this.y < this.bounds.y) {
+		  this.y = this.bounds.y;
+		  this.direction = -this.direction;
+		} else if (this.y > this.bounds.y + this.bounds.height) {
+		  this.y = this.bounds.y + this.bounds.height;
+		  this.direction = -this.direction;
+		}
+	  }
 }
 // 音符类
 class NoteBar {
@@ -322,7 +431,7 @@ class NoteBar {
     }
     public particlePlay():void{
         this.container.addChild(this.particleContainer);
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 30; i++) {
             const particle = new newparticle({
                 texture: this.barTexture,
                 x: this.bar.x,
@@ -339,7 +448,7 @@ class NoteBar {
             this.particleContainer.update();
             this.particles.forEach(particle => {
                 // 持续施加扩散力
-                particle.x += Math.cos(particle.angle) * particle.speed;
+                particle.x += (Math.cos(particle.angle) * particle.speed)*0.8;
                 particle.y += Math.sin(particle.angle) * particle.speed;
                 // 施加下落加速度
                 particle.speed *= 0.98;      // 速度衰减（空气阻力）
@@ -359,8 +468,10 @@ class NoteBar {
 class MouseTrigger {
     private keys: { [key: string]: boolean } = {};
     private noteArray: NoteBar[];
-    constructor(noteArray: NoteBar[]) {
+    public linearBox: Graphics[];
+    constructor(noteArray: NoteBar[], linearBox: Graphics[]) {
         this.noteArray = noteArray;
+        this.linearBox = linearBox;
         this.init();
     }
     // 初始化键盘事件监听
@@ -371,15 +482,16 @@ class MouseTrigger {
     // 处理键盘按下事件
     private handleKeyDown(event: KeyboardEvent): void {
         this.keys[event.key] = true;
-        this.checkKeys();
+        this.checkKeysDown();
     }
     // 处理键盘松开事件
     private handleKeyUp(event: KeyboardEvent): void {
-        this.keys[event.key] = false;
+        this.checkKeysUp();
     }
     // 检查按键状态并触发事件
-    private checkKeys(): void {
+    private checkKeysDown(): void {
         if (this.keys['a']) {
+            this.linearBox[0].visible = true;
             this.noteArray.forEach((note)=> {
                 if (note.noteType == 'noteA') {
                     note.isAdd = true;
@@ -388,6 +500,7 @@ class MouseTrigger {
             });
         }
         if (this.keys['s']) {
+            this.linearBox[1].visible = true;
             this.noteArray.forEach((note)=> {
                 if (note.noteType == 'noteS') {
                     note.isAdd = true;
@@ -396,6 +509,7 @@ class MouseTrigger {
             });
         }
         if (this.keys['d']) {
+            this.linearBox[2].visible = true;
             this.noteArray.forEach((note)=> {
                 if (note.noteType == 'noteD') {
                     note.isAdd = true;
@@ -404,6 +518,7 @@ class MouseTrigger {
             });
         }
         if (this.keys['j']) {
+            this.linearBox[3].visible = true;
             this.noteArray.forEach((note)=> {
                 if (note.noteType == 'noteJ') {
                     note.isAdd = true;
@@ -413,6 +528,7 @@ class MouseTrigger {
         }
         if (this.keys['k']) {
             this.noteArray.forEach((note)=> {
+                this.linearBox[4].visible = true;
                 if (note.noteType == 'noteK') {
                     note.isAdd = true;
                     console.log('触发音符K');
@@ -420,6 +536,7 @@ class MouseTrigger {
             });
         }
         if (this.keys['l']) {
+            this.linearBox[5].visible = true;
             this.noteArray.forEach((note)=> {
                 if (note.noteType == 'noteL') {
                     note.isAdd = true;
@@ -434,12 +551,39 @@ class MouseTrigger {
             console.log('按下 Escape');
         }
     }
+    private checkKeysUp(): void {
+        if (this.keys['a']) {
+            this.linearBox[0].visible = false;
+            this.keys['a'] = false;
+        }
+        if (this.keys['s']) {
+            this.linearBox[1].visible = false;
+            this.keys['s'] = false;
+        }
+        if (this.keys['d']) {
+            this.linearBox[2].visible = false;
+            this.keys['d'] = false;
+        }
+        if (this.keys['j']) {
+            this.linearBox[3].visible = false;
+            this.keys['j'] = false;
+        }
+        if (this.keys['k']) {
+            this.linearBox[4].visible = false;
+            this.keys['k'] = false;
+        }
+        if (this.keys['l']) {
+            this.linearBox[5].visible = false;
+            this.keys['l'] = false;
+        }
+    }
 }
 class MusicGame {
     private barX: { [key: string]: number };
     private canvasManager: CanvasManager;
     private notes: NoteBar[]; // 存储所有音符
     private myDashedLine: DashedLine; // 虚线
+    private myLinearBox: LinearBox; // 渐变框
     private myTriggerArea: TriggerArea; // 触发区
     private myline: TriggerLine; // 触发线
     private mouseTrigger: MouseTrigger; // 鼠标触发
@@ -449,6 +593,7 @@ class MusicGame {
         this.canvasManager = new CanvasManager();
         this.notes = [];
         this.myDashedLine = new DashedLine(this.canvasManager.app, this.canvasManager.container);
+        this.myLinearBox = new LinearBox(this.canvasManager.app, this.canvasManager.container,this.canvasManager.texture2);
         this.myTriggerArea = new TriggerArea(this.myDashedLine.dashedLineCanvas.canvas.height * 0.5);
         this.myline = new TriggerLine(this.canvasManager.app, this.canvasManager.container);
         const originX = this.myline.line.x+window.innerWidth*0.005;
@@ -461,7 +606,7 @@ class MusicGame {
             'noteK': originX + intervalX * 4,
             'noteL': originX + intervalX * 5,
         };
-        this.mouseTrigger = new MouseTrigger(this.myTriggerArea.triggerArray);
+        this.mouseTrigger = new MouseTrigger(this.myTriggerArea.triggerArray, this.myLinearBox.linearBox);
         this.noteSpawnInterval = 1000; // 每 1 秒生成一个音符
     }
 
@@ -478,11 +623,44 @@ class MusicGame {
         this.startAnimation();
         // 启动音符生成器
         this.startNoteSpawner();
+        //test
+            const particles: newparticle1[] = [];
+            const container = new ParticleContainer();
+            const starTexture = await Assets.load('/images/dust.svg');
+            const texture = new Texture(starTexture);
+            let count = 0;
+            this.canvasManager.container.addChild(container);
+            this.canvasManager.app.ticker.add(() => {
+                count++;
+                // Only generate new particles when key is pressed
+                if (count >= 10 && particles.length < 30) {
+                    const particle = new newparticle1({
+                        texture,
+                    });
+                    container.addParticle(particle);
+                    particles.push(particle);
+                    count = 0;
+                }
+                // 更新粒子
+                particles.forEach(particle => {
+                    particle.update();
+                });
+                // 清理失效粒子（逆向遍历避免索引错位）
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    if (!particles[i].isAlive) {
+                        container.removeParticle(particles[i]);
+                        particles.splice(i, 1);
+                    }
+                }
+                  // 可选：添加整体扰动
+                  container.x = Math.sin(Date.now() * 0.001) * 2;
+                  container.y = Math.cos(Date.now() * 0.001) * 2;
+            });
     }
 
     // 创建音符
     private createNoteBar(x: number, type: string, speed: number): void {
-        const noteBar = new NoteBar(this.canvasManager.app, this.canvasManager.container, x, speed,type,this.canvasManager.texture);
+        const noteBar = new NoteBar(this.canvasManager.app, this.canvasManager.container, x, speed,type,this.canvasManager.texture1);
         this.notes.push(noteBar);
     }
     // 启动动画循环
@@ -522,7 +700,78 @@ class MusicGame {
         return window.innerHeight * 0.005; // 随机速度
     }
 }
-
+class newparticle1 extends Particle {
+	// 新增生命周期相关属性
+	public age: number = 0;
+	public maxAge: number = 300;  // 3秒生命周期
+	public isAlive: boolean = true;
+	public speed: number = 0.5 + Math.random() * 0.8; // 随机速度
+	public direction: number = Math.random() * Math.PI * 2; // 初始随机方向
+	public drift: number = 0.02; // 方向随机漂移量
+	public bounds = { x: 400, y: 0, width: 300, height: 600 }; // 绑定到 myRect 的边界
+	private myAlpha!:number;
+	constructor(options: Texture<TextureSource<any>> | ParticleOptions) {
+		super(options);
+		this.initialize();
+	}
+	  // 初始化粒子位置和大小
+	  private initialize() {
+		// 初始化时重置生命周期
+		this.age = 0;
+		this.isAlive = true;
+		this.x = this.bounds.x + Math.random() * this.bounds.width;
+		this.y = this.bounds.y + Math.random() * this.bounds.height;
+		const scaleSize = 0.1 + Math.random() * 0.1;
+		this.scaleX=scaleSize;
+		this.scaleY=scaleSize;
+		this.alpha = 0.5 + Math.random() * 0.8;
+		this.myAlpha = this.alpha;
+	  }
+	  // 更新粒子运动
+	  public update() {
+		if (!this.isAlive)return;
+        this.age += 1;
+       // 生命周期结束处理
+        if (this.age >= this.maxAge) {
+            this.isAlive = false;
+            return;
+        }
+        // 淡出效果
+		this.alpha -= this.myAlpha/300;
+		// 随机方向漂移
+		this.direction += (Math.random() - 0.5) * this.drift;
+		// 计算运动向量
+		const dx = Math.cos(this.direction) * this.speed;
+		const dy = Math.sin(this.direction) * this.speed;
+		// 更新位置
+		this.x += dx;
+		this.y += dy;
+		// 边界约束
+		this.applyBoundaryConstraints();
+		// 随机透明度波动
+		// this.alpha += (Math.random() - 0.5) * 0.01;
+		// this.alpha = Math.min(Math.max(this.alpha, 0.3), 0.9);
+	  }
+	  // 边界限制逻辑
+	  private applyBoundaryConstraints() {
+		// X轴边界
+		if (this.x < this.bounds.x) {
+		  this.x = this.bounds.x;
+		  this.direction = Math.PI - this.direction;
+		} else if (this.x > this.bounds.x + this.bounds.width) {
+		  this.x = this.bounds.x + this.bounds.width;
+		  this.direction = Math.PI - this.direction;
+		}
+		// Y轴边界
+		if (this.y < this.bounds.y) {
+		  this.y = this.bounds.y;
+		  this.direction = -this.direction;
+		} else if (this.y > this.bounds.y + this.bounds.height) {
+		  this.y = this.bounds.y + this.bounds.height;
+		  this.direction = -this.direction;
+		}
+	  }
+}
 // 创建 MusicGame 实例并初始化
 (async () => {
     const musicGame = new MusicGame();
