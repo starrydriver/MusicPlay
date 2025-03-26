@@ -495,62 +495,62 @@ class MouseTrigger {
         if (this.keys['a']) {
             this.linearBox[0].visible = true;
             this.dustManager[0].isKeyPressed = true;
-            this.noteArray.forEach((note)=> {
-                if (note.noteType == 'noteA') {
-                    note.isAdd = true;
-                    console.log('触发音符A');
-                }
-            });
+            // this.noteArray.forEach((note)=> {
+            //     if (note.noteType == 'noteA') {
+            //         note.isAdd = true;
+            //         console.log('触发音符A');
+            //     }
+            // });
         }
         if (this.keys['s']) {
             this.linearBox[1].visible = true;
             this.dustManager[1].isKeyPressed = true;
-            this.noteArray.forEach((note)=> {
-                if (note.noteType == 'noteS') {
-                    note.isAdd = true;
-                    console.log('触发音符S');
-                }
-            });
+            // this.noteArray.forEach((note)=> {
+            //     if (note.noteType == 'noteS') {
+            //         note.isAdd = true;
+            //         console.log('触发音符S');
+            //     }
+            // });
         }
         if (this.keys['d']) {
             this.linearBox[2].visible = true;
             this.dustManager[2].isKeyPressed = true;
-            this.noteArray.forEach((note)=> {
-                if (note.noteType == 'noteD') {
-                    note.isAdd = true;
-                    console.log('触发音符D');
-                }
-            });
+            // this.noteArray.forEach((note)=> {
+            //     if (note.noteType == 'noteD') {
+            //         note.isAdd = true;
+            //         console.log('触发音符D');
+            //     }
+            // });
         }
         if (this.keys['j']) {
             this.linearBox[3].visible = true;
             this.dustManager[3].isKeyPressed = true;
-            this.noteArray.forEach((note)=> {
-                if (note.noteType == 'noteJ') {
-                    note.isAdd = true;
-                    console.log('触发音符J');
-                }
-            });
+            // this.noteArray.forEach((note)=> {
+            //     if (note.noteType == 'noteJ') {
+            //         note.isAdd = true;
+            //         console.log('触发音符J');
+            //     }
+            // });
         }
         if (this.keys['k']) {
-            this.noteArray.forEach((note)=> {
-                this.linearBox[4].visible = true;
-                this.dustManager[4].isKeyPressed = true;
-                if (note.noteType == 'noteK') {
-                    note.isAdd = true;
-                    console.log('触发音符K');
-                }
-            });
+            this.linearBox[4].visible = true;
+            this.dustManager[4].isKeyPressed = true;
+            //this.noteArray.forEach((note)=> {   
+            //    if (note.noteType == 'noteK') {
+            //      note.isAdd = true;
+            //       console.log('触发音符K');
+            //     }
+            // });
         }
         if (this.keys['l']) {
             this.linearBox[5].visible = true;
             this.dustManager[5].isKeyPressed = true;
-            this.noteArray.forEach((note)=> {
-                if (note.noteType == 'noteL') {
-                    note.isAdd = true;
-                    console.log('触发音符L');
-                }
-            });
+            // this.noteArray.forEach((note)=> {
+            //     if (note.noteType == 'noteL') {
+            //         note.isAdd = true;
+            //         console.log('触发音符L');
+            //     }
+            // });
         }
         if (this.keys['Enter']) {
             console.log('按下 Enter');
@@ -563,31 +563,67 @@ class MouseTrigger {
         if (this.keys['a']) {
             this.linearBox[0].visible = false;
             this.dustManager[0].isKeyPressed = false;
+            this.noteArray.forEach((note)=> {
+                if (note.noteType == 'noteA') {
+                    note.isAdd = true;
+                    console.log('触发音符A');
+                }
+            });
             this.keys['a'] = false;
         }
         if (this.keys['s']) {
             this.linearBox[1].visible = false;
             this.dustManager[1].isKeyPressed = false;
+            this.noteArray.forEach((note)=> {
+                if (note.noteType == 'noteS') {
+                    note.isAdd = true;
+                    console.log('触发音符S');
+                }
+            });
             this.keys['s'] = false;
         }
         if (this.keys['d']) {
             this.linearBox[2].visible = false;
             this.dustManager[2].isKeyPressed = false;
+            this.noteArray.forEach((note)=> {
+                if (note.noteType == 'noteD') {
+                    note.isAdd = true;
+                    console.log('触发音符D');
+                }
+            });
             this.keys['d'] = false;
         }
         if (this.keys['j']) {
             this.linearBox[3].visible = false;
             this.dustManager[3].isKeyPressed = false;
+            this.noteArray.forEach((note)=> {
+                if (note.noteType == 'noteJ') {
+                    note.isAdd = true;
+                    console.log('触发音符J');
+                }
+            });
             this.keys['j'] = false;
         }
         if (this.keys['k']) {
             this.linearBox[4].visible = false;
             this.dustManager[4].isKeyPressed = false;
+            this.noteArray.forEach((note)=> {
+                if (note.noteType == 'noteK') {
+                    note.isAdd = true;
+                    console.log('触发音符K');
+                }
+            });
             this.keys['k'] = false;
         }
         if (this.keys['l']) {
             this.linearBox[5].visible = false;
             this.dustManager[5].isKeyPressed = false;
+            this.noteArray.forEach((note)=> {
+                if (note.noteType == 'noteL') {
+                    note.isAdd = true;
+                    console.log('触发音符L');
+                }
+            });
             this.keys['l'] = false;
         }
     }
