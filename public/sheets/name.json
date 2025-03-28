@@ -1,0 +1,66 @@
+{
+  "time_division": 960,
+  "track_1": {
+    "note_range": {
+      "min": "G4",
+      "max": "E5",
+      "semitones": 10
+    },
+    "notes": [
+      {
+        "start_ticks": 480,
+        "note": "G4",
+        "duration_ticks": 3360,
+        "velocity": 80,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 4320,
+        "note": "A4",
+        "duration_ticks": 3840,
+        "velocity": 80,
+        "midi_value": 69,
+        "frequency_hz": 440,
+        "channel": 0
+      },
+      {
+        "start_ticks": 9120,
+        "note": "B4",
+        "duration_ticks": 3840,
+        "velocity": 80,
+        "midi_value": 71,
+        "frequency_hz": 493.8833012561241,
+        "channel": 0
+      },
+      {
+        "start_ticks": 13440,
+        "note": "C#5",
+        "duration_ticks": 5280,
+        "velocity": 80,
+        "midi_value": 73,
+        "frequency_hz": 554.3652619537442,
+        "channel": 0
+      },
+      {
+        "start_ticks": 19200,
+        "note": "D#5",
+        "duration_ticks": 5760,
+        "velocity": 80,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 24960,
+        "note": "E5",
+        "duration_ticks": 6240,
+        "velocity": 80,
+        "midi_value": 76,
+        "frequency_hz": 659.2551138257398,
+        "channel": 0
+      }
+    ]
+  }
+}
