@@ -1,0 +1,3819 @@
+{
+  "time_division": 480,
+  "track_1": {
+    "note_range": {
+      "min": "G4",
+      "max": "D#6",
+      "semitones": 21
+    },
+    "notes": [
+      {
+        "start_ticks": 1200,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 1440,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 1680,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 1920,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 2400,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 2640,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 2880,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 3360,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 3600,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 3840,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 4080,
+        "note": "G4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 4320,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 4560,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 4800,
+        "note": "C5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 5280,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 5520,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 5760,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 6240,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 6480,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 6720,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 7200,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 7440,
+        "note": "C6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 7680,
+        "note": "D#6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 87,
+        "frequency_hz": 1244.5079348883237,
+        "channel": 0
+      },
+      {
+        "start_ticks": 7920,
+        "note": "D6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 86,
+        "frequency_hz": 1174.6590716696303,
+        "channel": 0
+      },
+      {
+        "start_ticks": 8160,
+        "note": "C6",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 8220,
+        "note": "D6",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 86,
+        "frequency_hz": 1174.6590716696303,
+        "channel": 0
+      },
+      {
+        "start_ticks": 8280,
+        "note": "C6",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 8400,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 8640,
+        "note": "C6",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 9120,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 9360,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 9600,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 10080,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 10320,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 10560,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 11040,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 11280,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 11520,
+        "note": "G5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 11880,
+        "note": "C5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 12000,
+        "note": "D#5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 12120,
+        "note": "F5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 12240,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 12480,
+        "note": "C5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 12960,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 13200,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 13440,
+        "note": "C5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 13800,
+        "note": "A#4",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 13860,
+        "note": "C5",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 13920,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 14160,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 14400,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 14640,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 14880,
+        "note": "A#4",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 15360,
+        "note": "C5",
+        "duration_ticks": 864,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 16320,
+        "note": "G4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 16560,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 16800,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 17040,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 17280,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 17760,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 18000,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 18240,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 18720,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 18960,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 19200,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 19440,
+        "note": "G4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 19680,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 19920,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 20160,
+        "note": "C5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 20640,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 20880,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 21120,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 21600,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 21840,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 22080,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 22560,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 22800,
+        "note": "C6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 23040,
+        "note": "D#6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 87,
+        "frequency_hz": 1244.5079348883237,
+        "channel": 0
+      },
+      {
+        "start_ticks": 23280,
+        "note": "D6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 86,
+        "frequency_hz": 1174.6590716696303,
+        "channel": 0
+      },
+      {
+        "start_ticks": 23520,
+        "note": "C6",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 23580,
+        "note": "D6",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 86,
+        "frequency_hz": 1174.6590716696303,
+        "channel": 0
+      },
+      {
+        "start_ticks": 23640,
+        "note": "C6",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 23760,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 24000,
+        "note": "C6",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 24480,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 24720,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 24960,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 25440,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 25680,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 25920,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 26400,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 26640,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 26880,
+        "note": "G5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 27240,
+        "note": "C5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 27360,
+        "note": "D#5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 27480,
+        "note": "F5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 27600,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 27840,
+        "note": "C5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 28320,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 28560,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 28800,
+        "note": "C5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 29160,
+        "note": "A#4",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 29220,
+        "note": "C5",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 29280,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 29520,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 29760,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 30000,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 30240,
+        "note": "A#5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 30720,
+        "note": "C6",
+        "duration_ticks": 864,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 31680,
+        "note": "G4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 31920,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 32160,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 32400,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 32640,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 32880,
+        "note": "C6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 33120,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 33360,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 33600,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 34080,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 34320,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 34560,
+        "note": "D5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 74,
+        "frequency_hz": 587.3295358348151,
+        "channel": 0
+      },
+      {
+        "start_ticks": 34800,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 35040,
+        "note": "D5",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 74,
+        "frequency_hz": 587.3295358348151,
+        "channel": 0
+      },
+      {
+        "start_ticks": 35100,
+        "note": "D#5",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 35160,
+        "note": "D5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 74,
+        "frequency_hz": 587.3295358348151,
+        "channel": 0
+      },
+      {
+        "start_ticks": 35280,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 35520,
+        "note": "C5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 36000,
+        "note": "G4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 36240,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 36480,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 36720,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 36960,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 37200,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 37440,
+        "note": "F5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 37800,
+        "note": "D#5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 37920,
+        "note": "F5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 38040,
+        "note": "G5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 38160,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 38400,
+        "note": "F5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 38760,
+        "note": "D#5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 38880,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 39120,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 39360,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 39840,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 40080,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 40320,
+        "note": "C6",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 40800,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 41040,
+        "note": "C6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 41280,
+        "note": "G5",
+        "duration_ticks": 648,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 42000,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 42240,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 42480,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 42720,
+        "note": "F5",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 42780,
+        "note": "G5",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 42840,
+        "note": "F5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 42960,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 43200,
+        "note": "C5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 43680,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 43920,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 44160,
+        "note": "C5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 44520,
+        "note": "A#4",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 44640,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 44880,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 45120,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 45360,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 45600,
+        "note": "A#5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 46080,
+        "note": "C6",
+        "duration_ticks": 864,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 47040,
+        "note": "G4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 47280,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 47520,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 47760,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 48000,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 48480,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 48720,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 48960,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 49440,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 49680,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 49920,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 50160,
+        "note": "G4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 50400,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 50640,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 50880,
+        "note": "C5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 51360,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 51600,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 51840,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 52320,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 52560,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 52800,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 53280,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 53520,
+        "note": "C6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 53760,
+        "note": "D#6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 87,
+        "frequency_hz": 1244.5079348883237,
+        "channel": 0
+      },
+      {
+        "start_ticks": 54000,
+        "note": "D6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 86,
+        "frequency_hz": 1174.6590716696303,
+        "channel": 0
+      },
+      {
+        "start_ticks": 54240,
+        "note": "C6",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 54300,
+        "note": "D6",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 86,
+        "frequency_hz": 1174.6590716696303,
+        "channel": 0
+      },
+      {
+        "start_ticks": 54360,
+        "note": "C6",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 54480,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 54720,
+        "note": "C6",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 55200,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 55440,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 55680,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 56160,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 56400,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 56640,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 57120,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 57360,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 57600,
+        "note": "G5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 57960,
+        "note": "C5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 58080,
+        "note": "D#5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 58200,
+        "note": "F5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 58320,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 58560,
+        "note": "C5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 59040,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 59280,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 59520,
+        "note": "C5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 59880,
+        "note": "A#4",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 59940,
+        "note": "C5",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 60000,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 60240,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 60480,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 60720,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 60960,
+        "note": "A#4",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 61440,
+        "note": "C5",
+        "duration_ticks": 864,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 62400,
+        "note": "G4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 62640,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 62880,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 63120,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 63360,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 63840,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 64080,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 64320,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 64800,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 65040,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 65280,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 65520,
+        "note": "G4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 65760,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 66000,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 66240,
+        "note": "C5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 66720,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 66960,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 67200,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 67680,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 67920,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 68160,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 68640,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 68880,
+        "note": "C6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 69120,
+        "note": "D#6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 87,
+        "frequency_hz": 1244.5079348883237,
+        "channel": 0
+      },
+      {
+        "start_ticks": 69360,
+        "note": "D6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 86,
+        "frequency_hz": 1174.6590716696303,
+        "channel": 0
+      },
+      {
+        "start_ticks": 69600,
+        "note": "C6",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 69660,
+        "note": "D6",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 86,
+        "frequency_hz": 1174.6590716696303,
+        "channel": 0
+      },
+      {
+        "start_ticks": 69720,
+        "note": "C6",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 69840,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 70080,
+        "note": "C6",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 70560,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 70800,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 71040,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 71520,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 71760,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 72000,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 72480,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 72720,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 72960,
+        "note": "G5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 73320,
+        "note": "C5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 73440,
+        "note": "D#5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 73560,
+        "note": "F5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 73680,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 73920,
+        "note": "C5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 74400,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 74640,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 74880,
+        "note": "C5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 75240,
+        "note": "A#4",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 75300,
+        "note": "C5",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 75360,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 75600,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 75840,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 76080,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 76320,
+        "note": "A#5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 76800,
+        "note": "C6",
+        "duration_ticks": 864,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 77760,
+        "note": "G4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 78000,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 78240,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 78480,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 78720,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 78960,
+        "note": "C6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 79200,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 79440,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 79680,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 80160,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 80400,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 80640,
+        "note": "D5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 74,
+        "frequency_hz": 587.3295358348151,
+        "channel": 0
+      },
+      {
+        "start_ticks": 80880,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 81120,
+        "note": "D5",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 74,
+        "frequency_hz": 587.3295358348151,
+        "channel": 0
+      },
+      {
+        "start_ticks": 81180,
+        "note": "D#5",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 81240,
+        "note": "D5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 74,
+        "frequency_hz": 587.3295358348151,
+        "channel": 0
+      },
+      {
+        "start_ticks": 81360,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 81600,
+        "note": "C5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 82080,
+        "note": "G4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 82320,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 82560,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 82800,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 83040,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 83280,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 83520,
+        "note": "F5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 83880,
+        "note": "D#5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 84000,
+        "note": "F5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 84120,
+        "note": "G5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 84240,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 84480,
+        "note": "F5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 84840,
+        "note": "D#5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 84960,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 85200,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 85440,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 85920,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 86160,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 86400,
+        "note": "C6",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 86880,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 87120,
+        "note": "C6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 87360,
+        "note": "G5",
+        "duration_ticks": 648,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 88080,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 88320,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 88560,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 88800,
+        "note": "F5",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 88860,
+        "note": "G5",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 88920,
+        "note": "F5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 89040,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 89280,
+        "note": "C5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 89760,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 90000,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 90240,
+        "note": "C5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 90600,
+        "note": "A#4",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 90720,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 90960,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 91200,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 91440,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 91680,
+        "note": "A#5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 92160,
+        "note": "C6",
+        "duration_ticks": 864,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 93120,
+        "note": "G4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 93360,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 93600,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 93840,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 94080,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 94560,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 94800,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 95040,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 95520,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 95760,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 96000,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 96240,
+        "note": "G4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 96480,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 96720,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 96960,
+        "note": "C5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 97440,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 97680,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 97920,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 98400,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 98640,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 98880,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 99360,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 99600,
+        "note": "C6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 99840,
+        "note": "D#6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 87,
+        "frequency_hz": 1244.5079348883237,
+        "channel": 0
+      },
+      {
+        "start_ticks": 100080,
+        "note": "D6",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 86,
+        "frequency_hz": 1174.6590716696303,
+        "channel": 0
+      },
+      {
+        "start_ticks": 100320,
+        "note": "C6",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 100380,
+        "note": "D6",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 86,
+        "frequency_hz": 1174.6590716696303,
+        "channel": 0
+      },
+      {
+        "start_ticks": 100440,
+        "note": "C6",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 100560,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 100800,
+        "note": "C6",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 101280,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 101520,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 101760,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 102240,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 102480,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 102720,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 103200,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 103440,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 103680,
+        "note": "G5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 104040,
+        "note": "C5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 104160,
+        "note": "D#5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 104280,
+        "note": "F5",
+        "duration_ticks": 108,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 104400,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 104640,
+        "note": "C5",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 105120,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 105360,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 105600,
+        "note": "C5",
+        "duration_ticks": 324,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 105960,
+        "note": "A#4",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 106020,
+        "note": "C5",
+        "duration_ticks": 54,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 106080,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 106320,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 106560,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 106800,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 107040,
+        "note": "A#4",
+        "duration_ticks": 432,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 107520,
+        "note": "C5",
+        "duration_ticks": 864,
+        "velocity": 112,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 108480,
+        "note": "G4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 108720,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 112,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 108960,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 109,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 109200,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 107,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 109440,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 104,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 109920,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 100,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 110160,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 97,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 110400,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 95,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 110880,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 90,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 111120,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 88,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 111360,
+        "note": "A#4",
+        "duration_ticks": 216,
+        "velocity": 85,
+        "midi_value": 70,
+        "frequency_hz": 466.1637615180899,
+        "channel": 0
+      },
+      {
+        "start_ticks": 111600,
+        "note": "G4",
+        "duration_ticks": 216,
+        "velocity": 83,
+        "midi_value": 67,
+        "frequency_hz": 391.99543598174927,
+        "channel": 0
+      },
+      {
+        "start_ticks": 111840,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 80,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 112080,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 78,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 112320,
+        "note": "C5",
+        "duration_ticks": 432,
+        "velocity": 76,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 112800,
+        "note": "C5",
+        "duration_ticks": 216,
+        "velocity": 71,
+        "midi_value": 72,
+        "frequency_hz": 523.2511306011972,
+        "channel": 0
+      },
+      {
+        "start_ticks": 113040,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 68,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 113280,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 66,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 113760,
+        "note": "D#5",
+        "duration_ticks": 216,
+        "velocity": 60,
+        "midi_value": 75,
+        "frequency_hz": 622.2539674441618,
+        "channel": 0
+      },
+      {
+        "start_ticks": 114000,
+        "note": "F5",
+        "duration_ticks": 216,
+        "velocity": 58,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      },
+      {
+        "start_ticks": 114240,
+        "note": "G5",
+        "duration_ticks": 432,
+        "velocity": 56,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 114720,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 51,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 114960,
+        "note": "C6",
+        "duration_ticks": 216,
+        "velocity": 48,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 115200,
+        "note": "D#6",
+        "duration_ticks": 216,
+        "velocity": 46,
+        "midi_value": 87,
+        "frequency_hz": 1244.5079348883237,
+        "channel": 0
+      },
+      {
+        "start_ticks": 115440,
+        "note": "D6",
+        "duration_ticks": 216,
+        "velocity": 44,
+        "midi_value": 86,
+        "frequency_hz": 1174.6590716696303,
+        "channel": 0
+      },
+      {
+        "start_ticks": 115680,
+        "note": "C6",
+        "duration_ticks": 54,
+        "velocity": 41,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 115740,
+        "note": "D6",
+        "duration_ticks": 54,
+        "velocity": 40,
+        "midi_value": 86,
+        "frequency_hz": 1174.6590716696303,
+        "channel": 0
+      },
+      {
+        "start_ticks": 115800,
+        "note": "C6",
+        "duration_ticks": 108,
+        "velocity": 40,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 115920,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 39,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 116160,
+        "note": "C6",
+        "duration_ticks": 432,
+        "velocity": 36,
+        "midi_value": 84,
+        "frequency_hz": 1046.5022612023945,
+        "channel": 0
+      },
+      {
+        "start_ticks": 116640,
+        "note": "A#5",
+        "duration_ticks": 216,
+        "velocity": 32,
+        "midi_value": 82,
+        "frequency_hz": 932.3275230361799,
+        "channel": 0
+      },
+      {
+        "start_ticks": 116880,
+        "note": "G5",
+        "duration_ticks": 216,
+        "velocity": 32,
+        "midi_value": 79,
+        "frequency_hz": 783.9908719634985,
+        "channel": 0
+      },
+      {
+        "start_ticks": 117120,
+        "note": "F5",
+        "duration_ticks": 432,
+        "velocity": 32,
+        "midi_value": 77,
+        "frequency_hz": 698.4564628660078,
+        "channel": 0
+      }
+    ]
+  }
+}

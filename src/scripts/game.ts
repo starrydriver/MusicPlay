@@ -231,20 +231,42 @@ class TriggerLine {
 //触发区类
 class TriggerArea {
 	public AreaY:number;
-	public triggerArray: NoteBar[];
+	public triggerArray: {[key:string]:NoteBar[]};
 	constructor(y:number){
 		this.AreaY = y;
-		this.triggerArray = [];
+        this.triggerArray = {
+            ["noteA"]:[],
+            ["noteS"]:[],
+            ["noteD"]:[],
+            ["noteJ"]:[],
+            ["noteK"]:[],
+            ["noteL"]:[],
+        };
 	}
     public init():void{
         console.log('初始化触发区');
     }
     //触发区数组
     public addTrigger(bar:NoteBar):void{
-        if (bar.bar.y > this.AreaY && this.triggerArray.includes(bar) === false) {
-            this.triggerArray.push(bar); // 将音符添加到数组
+        if (bar.bar.y > this.AreaY &&bar.noteType == "noteA" && this.triggerArray["noteA"].includes(bar) === false) {
+            this.triggerArray["noteA"].push(bar); // 将音符添加到数组
             //console.log('barY:', bar.bar.y+",AreaY:",this.AreaY);
             //console.log('音符注入数组');
+        }
+        if (bar.bar.y > this.AreaY &&bar.noteType == "noteS" && this.triggerArray["noteS"].includes(bar) === false) {
+            this.triggerArray["noteS"].push(bar); // 将音符添加到数组
+        }
+        if (bar.bar.y > this.AreaY &&bar.noteType == "noteD" && this.triggerArray["noteD"].includes(bar) === false) {
+            this.triggerArray["noteD"].push(bar); // 将音符添加到数组
+        }
+        if (bar.bar.y > this.AreaY &&bar.noteType == "noteJ" && this.triggerArray["noteJ"].includes(bar) === false) {
+            this.triggerArray["noteJ"].push(bar); // 将音符添加到数组
+        }
+        if (bar.bar.y > this.AreaY &&bar.noteType == "noteK" && this.triggerArray["noteK"].includes(bar) === false) {
+            this.triggerArray["noteK"].push(bar); // 将音符添加到数组
+        }
+        if (bar.bar.y > this.AreaY &&bar.noteType == "noteL" && this.triggerArray["noteL"].includes(bar) === false) {
+            this.triggerArray["noteL"].push(bar); // 将音符添加到数组
         }
     }
 }
@@ -470,22 +492,23 @@ class NoteBar {
         this.bar.y = -200; // 从屏幕顶部开始
     }
     // 更新音符位置
-    public update(delta: number,border:number,array:NoteBar[]): void {
+    public update(delta: number,border:number,array:NoteBar[],noteArray: {[Key:string]:NoteBar[]}): void {
         this.bar.y += this.speed * delta; // 根据速度下落
         // 如果音符超出屏幕，移除它
         if (this.bar.y > border) {
-            this.PlayMidi(this.midi);
             this.container.removeChild(this.bar);
+            noteArray[this.noteType].splice(noteArray[this.noteType].indexOf(this), 1); // 从数组中移除
             array.splice(array.indexOf(this), 1); // 从数组中移除
             this.bar.destroy(); // 销毁图形
-            console.log('音符消失!');
+            //console.log('音符消失!');
         }
         else if (this.isAdd == true) {
             this.container.removeChild(this.bar);
+            this.PlayMidi(this.midi);
             array.splice(array.indexOf(this), 1); // 从数组中移除
             this.particlePlay();
             this.bar.destroy(); // 销毁图形
-            console.log('节拍触发!');
+            //console.log('节拍触发!');
         }
     }
     public PlayMidi(midi:MidiNote):void{
@@ -525,7 +548,7 @@ class NoteBar {
                     // 粒子超出屏幕范围或速度小于0.1，则移除粒子
                     this.particleContainer.removeParticle(particle);
                     this.particles.splice(this.particles.indexOf(particle), 1);
-                    console.log('粒子数量：', this.particles.length);
+                    //console.log('粒子数量：', this.particles.length);
                 }
             });
         });
@@ -534,10 +557,12 @@ class NoteBar {
 //鼠标触发
 class MouseTrigger {
     private keys: { [key: string]: boolean } = {};
-    private noteArray: NoteBar[];
+    private noteArray: {[Key:string]:NoteBar[]};
     public linearBox: Graphics[];
     private dustManager: DustManager[];
-    constructor(noteArray: NoteBar[], linearBox: Graphics[],dustManager: DustManager[]) {
+    private noteArrayPos:number[] = [0,0,0,0,0,0];
+    private isCanClearNote:boolean[] = [true,true,true,true,true,true];
+    constructor(noteArray: {[Key:string]:NoteBar[]}, linearBox: Graphics[],dustManager: DustManager[]) {
         this.noteArray = noteArray;
         this.linearBox = linearBox;
         this.dustManager = dustManager;
@@ -561,63 +586,75 @@ class MouseTrigger {
     }
     // 检查按键状态并触发事件
     private checkKeysDown(): void {
-        if (this.keys['a']) {
-            this.linearBox[0].visible = true;
-            this.dustManager[0].isKeyPressed = true;
-            this.noteArray.forEach((note)=> {
-                if (note.noteType == 'noteA') {
-                    note.isAdd = true;
-                    console.log('触发音符A');
-                }
-            });
-        }
-        if (this.keys['s']) {
-            this.linearBox[1].visible = true;
-            this.dustManager[1].isKeyPressed = true;
-            this.noteArray.forEach((note)=> {
-                if (note.noteType == 'noteS') {
-                    note.isAdd = true;
-                    console.log('触发音符S');
+    if (this.keys['a']) {
+        this.linearBox[0].visible = true;
+        this.dustManager[0].isKeyPressed = true;
+        this.noteArray["noteA"].forEach((note,index)=> {
+            if (note.noteType == 'noteA'&& index == this.noteArrayPos[0]&& this.isCanClearNote[0]) {
+                note.isAdd = true;
+                this.noteArray["noteA"].splice(index, 1);
+                this.isCanClearNote[0] = false;
+                console.log('触发音符A'+index);
+            }
+        });
+    }
+    if (this.keys['s']) {
+        this.linearBox[1].visible = true;
+        this.dustManager[1].isKeyPressed = true;
+        this.noteArray["noteS"].forEach((note,index)=> {
+            if (note.noteType == 'noteS'&& index == this.noteArrayPos[1]&& this.isCanClearNote[1]) {
+                note.isAdd = true;
+                this.noteArray["noteS"].splice(index, 1);
+                    this.isCanClearNote[1] = false;
+                    console.log('触发音符S'+index);
                 }
             });
         }
         if (this.keys['d']) {
             this.linearBox[2].visible = true;
             this.dustManager[2].isKeyPressed = true;
-            this.noteArray.forEach((note)=> {
-                if (note.noteType == 'noteD') {
+            this.noteArray["noteD"].forEach((note,index)=> {
+                if (note.noteType == 'noteD'&& index == this.noteArrayPos[2]&& this.isCanClearNote[2]) {
                     note.isAdd = true;
-                    console.log('触发音符D');
+                    this.noteArray["noteD"].splice(index, 1);
+                    this.isCanClearNote[2] = false;
+                    console.log('触发音符D'+index);
                 }
             });
         }
         if (this.keys['j']) {
             this.linearBox[3].visible = true;
             this.dustManager[3].isKeyPressed = true;
-            this.noteArray.forEach((note)=> {
-                if (note.noteType == 'noteJ') {
+            this.noteArray["noteJ"].forEach((note,index)=> {
+                if (note.noteType == 'noteJ'&& index == this.noteArrayPos[3]&& this.isCanClearNote[3]) {
                     note.isAdd = true;
-                    console.log('触发音符J');
+                    this.noteArray["noteJ"].splice(index, 1);
+                    this.isCanClearNote[3] = false;
+                    console.log('触发音符J'+index);
                 }
             });
         }
         if (this.keys['k']) {
             this.linearBox[4].visible = true;
             this.dustManager[4].isKeyPressed = true;
-            this.noteArray.forEach((note)=> {   
-               if (note.noteType == 'noteK') {
-                 note.isAdd = true;
-                  console.log('触发音符K');
+            this.noteArray["noteK"].forEach((note,index)=> {   
+                if (note.noteType == 'noteK'&& index == this.noteArrayPos[4]&& this.isCanClearNote[4]) {
+                    note.isAdd = true;
+                    this.noteArray["noteK"].splice(index, 1);
+                    this.isCanClearNote[4] = false;
+                    console.log('触发音符K'+index);
                 }
             });
         }
         if (this.keys['l']) {
             this.linearBox[5].visible = true;
             this.dustManager[5].isKeyPressed = true;
-            this.noteArray.forEach((note)=> {
-                if (note.noteType == 'noteL') {
+            this.noteArray["noteL"].forEach((note,index)=> {
+                if (note.noteType == 'noteL'&& index == this.noteArrayPos[5]&& this.isCanClearNote[5]) {
                     note.isAdd = true;
-                    console.log('触发音符L');
+                    this.noteArray["noteL"].splice(index, 1);
+                    this.isCanClearNote[5] = false;
+                    console.log('触发音符L'+index);
                 }
             });
         }
@@ -629,73 +666,44 @@ class MouseTrigger {
         }
     }
     private checkKeysUp(): void {
-        if (this.keys['a']) {
-            this.linearBox[0].visible = false;
-            this.dustManager[0].isKeyPressed = false;
-            // this.noteArray.forEach((note)=> {
-            //     if (note.noteType == 'noteA') {
-            //         note.isAdd = true;
-            //         console.log('触发音符A');
-            //     }
-            // });
-            this.keys['a'] = false;
-        }
-        if (this.keys['s']) {
-            this.linearBox[1].visible = false;
-            this.dustManager[1].isKeyPressed = false;
-            // this.noteArray.forEach((note)=> {
-            //     if (note.noteType == 'noteS') {
-            //         note.isAdd = true;
-            //         console.log('触发音符S');
-            //     }
-            // });
-            this.keys['s'] = false;
-        }
-        if (this.keys['d']) {
-            this.linearBox[2].visible = false;
-            this.dustManager[2].isKeyPressed = false;
-            // this.noteArray.forEach((note)=> {
-            //     if (note.noteType == 'noteD') {
-            //         note.isAdd = true;
-            //         console.log('触发音符D');
-            //     }
-            // });
-            this.keys['d'] = false;
-        }
-        if (this.keys['j']) {
-            this.linearBox[3].visible = false;
-            this.dustManager[3].isKeyPressed = false;
-            // this.noteArray.forEach((note)=> {
-            //     if (note.noteType == 'noteJ') {
-            //         note.isAdd = true;
-            //         console.log('触发音符J');
-            //     }
-            // });
-            this.keys['j'] = false;
-        }
-        if (this.keys['k']) {
-            this.linearBox[4].visible = false;
-            this.dustManager[4].isKeyPressed = false;
-            // this.noteArray.forEach((note)=> {
-            //     if (note.noteType == 'noteK') {
-            //         note.isAdd = true;
-            //         console.log('触发音符K');
-            //     }
-            // });
-            this.keys['k'] = false;
-        }
-        if (this.keys['l']) {
-            this.linearBox[5].visible = false;
-            this.dustManager[5].isKeyPressed = false;
-            // this.noteArray.forEach((note)=> {
-            //     if (note.noteType == 'noteL') {
-            //         note.isAdd = true;
-            //         console.log('触发音符L');
-            //     }
-            // });
-            this.keys['l'] = false;
-        }
+    if (this.keys['a']) {
+        this.linearBox[0].visible = false;
+        this.dustManager[0].isKeyPressed = false;
+        this.isCanClearNote[0] = true;
+        this.keys['a'] = false;
     }
+    if (this.keys['s']) {
+        this.linearBox[1].visible = false;
+        this.dustManager[1].isKeyPressed = false;
+        this.isCanClearNote[1] = true;
+        this.keys['s'] = false;
+    }
+    if (this.keys['d']) {
+        this.linearBox[2].visible = false;
+        this.dustManager[2].isKeyPressed = false;
+        this.isCanClearNote[2] = true;
+        this.keys['d'] = false;
+    }
+    if (this.keys['j']) {
+        this.linearBox[3].visible = false;
+        this.dustManager[3].isKeyPressed = false;
+        this.isCanClearNote[3] = true;
+        this.keys['j'] = false;
+    }
+    if (this.keys['k']) {
+        this.linearBox[4].visible = false;
+        this.dustManager[4].isKeyPressed = false;
+        this.isCanClearNote[4] = true;
+        this.keys['k'] = false;
+    }
+    if (this.keys['l']) {
+        this.linearBox[5].visible = false;
+        this.dustManager[5].isKeyPressed = false;
+        this.isCanClearNote[5] = true;
+        this.keys['l'] = false;
+    }
+}
+
 }
 class MusicGame {
     private barX: { [key: string]: number };
@@ -747,8 +755,6 @@ class MusicGame {
         this.canvasManager.container.addChild(this.myline.line);
         // 启动动画循环
         this.startAnimation();
-        // 启动音符生成器
-        //this.startNoteSpawner();
         // 启动尘埃生成器
         for (let i = 0; i < 6; i++) {
             this.myDustManager[i].init();
@@ -764,7 +770,7 @@ class MusicGame {
                 try {
                     console.log('⏳ 加载资源...');
                     [jsonData, sampler] = await Promise.all([
-                        fetch('/sheets/flan.json').then(res => res.json()),
+                        fetch('/sheets/touhou2.json').then(res => res.json()),
                         new Tone.Sampler({
                             urls: { C4: '/audio/C4piano.mp3' },
                             release: 1
@@ -791,7 +797,7 @@ class MusicGame {
                 currentIndex = 0;
                 console.log('播放已停止');
                 return;
-            }   
+            }
             const notes = jsonData.track_1.notes;
             playNextNote();
             function playNextNote() {
@@ -802,13 +808,7 @@ class MusicGame {
                     return;
                 }
                 const currentNote = notes[currentIndex];
-                // sampler.triggerAttackRelease(
-                //     currentNote.note,
-                //     currentNote.duration_ticks / jsonData.time_division,
-                //     Tone.now(),
-                //     currentNote.velocity / 127
-                // );
-                console.log('🔊 播放:', currentNote.note);
+                //console.log('🔊 播放:', currentNote.note);
                 const [type, x] = self.GetX(currentNote.note); // 随机 x 位置
                 const speed = self.getRandomSpeed(); // 随机速度
                 self.createNoteBar(x, type, speed,currentNote); // 创建音符
@@ -816,8 +816,8 @@ class MusicGame {
                 let interval = 0;
                 if (currentIndex < notes.length - 1) {
                     const nextNote = notes[currentIndex + 1];
-                    interval = (nextNote.start_ticks - currentNote.start_ticks) / jsonData.time_division * 500; // 转换为毫秒
-                    console.log('⏱️ 到下一个音符的间隔(ms):', interval);
+                    interval = (nextNote.start_ticks - currentNote.start_ticks) / jsonData.time_division * 1000; // 转换为毫秒
+                    //console.log('⏱️ 到下一个音符的间隔(ms):', interval);
                 }
                 currentIndex++;
                 if (currentIndex < notes.length) {
@@ -825,9 +825,7 @@ class MusicGame {
                 }
             }
         });
-   
     }
-    
     //test--------------------------------------------------------------------
     private GetX(note: string): [string, number] {
         const barX = this.barX; // 音符 x 位置
@@ -865,7 +863,7 @@ class MusicGame {
     private startAnimation(): void {
         this.canvasManager.app.ticker.add((time) => {
             // 更新所有音符的位置
-            this.notes.forEach((note) => note.update(time.deltaTime,this.myline.line.y,this.notes));
+            this.notes.forEach((note) => note.update(time.deltaTime,this.myline.line.y,this.notes,this.myTriggerArea.triggerArray));
             // 更新触发区
             this.notes.forEach((note) => {
                 this.myTriggerArea.addTrigger(note);
@@ -874,25 +872,6 @@ class MusicGame {
             this.notes = this.notes.filter((note) => note.bar.parent !== null);
         });
     }
-    // 启动音符生成器
-    // private startNoteSpawner(): void {
-    //     setInterval(() => {
-    //         const [type, x] = this.getRandomX(); // 随机 x 位置
-    //         const speed = this.getRandomSpeed(); // 随机速度
-    //         this.createNoteBar(x, type, speed); // 创建音符
-    //     }, this.noteSpawnInterval);
-    // }
-
-    // 获取随机 x 位置
-    private getRandomX(): [string, number] {
-		const barX = this.barX; // 音符 x 位置
-        // 获取所有键的数组
-        const keys = Object.keys(barX);
-        // 生成基于键数量的随机索引
-        const randomIndex = Math.floor(Math.random() * keys.length);
-        // 通过随机键名获取对应值
-        return [keys[randomIndex], barX[keys[randomIndex]]];
-	}
     // 获取随机速度
     private getRandomSpeed(): number {
         return window.innerHeight * 0.005; // 随机速度
