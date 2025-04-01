@@ -1,8 +1,33 @@
 import {Application, Graphics, Container,Sprite, Assets ,Texture,Particle, ParticleContainer,Filter, TextureSource, type ParticleOptions, BitmapText, FillGradient} from 'pixi.js';
 import { GlowFilter } from 'pixi-filters';
 import * as Tone from 'tone';
-let jsonData: any;
-let sampler: Tone.Sampler;
+//读取midi文件的json接口
+interface MidiNote {
+    start_ticks: number;
+    note: string;
+    duration_ticks: number;
+    velocity: number;
+    midi_value: number;
+    frequency_hz: number;
+    channel: number;
+}
+// class AppState{
+//     private static instance:AppState;
+//     //public jsonData:MidiNote;
+//     public sampler:Tone.Sampler;
+//     constructor(){
+//         //this.jsonData = {};
+//         this.sampler = new Tone.Sampler();
+//     }
+//     public static getInstance(): AppState {
+//         if (!AppState.instance) {
+//             AppState.instance = new AppState();
+//         }
+//         return AppState.instance;
+//     }
+// }
+//let jsonData: any;
+//let sampler: Tone.Sampler;
 // 画布管理类
 class CanvasManager {
     public app: Application;
@@ -449,9 +474,10 @@ class NoteBar {
     private barTexture: Texture<TextureSource<any>>;
     //test------------------------
     public midi:MidiNote;
+    public sampler:Tone.Sampler;
 
     
-    constructor(app: Application, container: Container, x: number, speed: number,type:string,barTexture:Texture<TextureSource<any>>,midi:MidiNote) {
+    constructor(app: Application, container: Container, x: number, speed: number,type:string,barTexture:Texture<TextureSource<any>>,midi:MidiNote,sampler:Tone.Sampler) {
         this.app = app;
         this.container = container;
         this.speed = speed;
@@ -468,6 +494,7 @@ class NoteBar {
         this.barTexture = barTexture;
         //test----------------------------
         this.midi = midi;
+        this.sampler = sampler;
     }
     //更新样式
     public updateSize(x: number): void {
@@ -512,7 +539,7 @@ class NoteBar {
         }
     }
     public PlayMidi(midi:MidiNote):void{
-        sampler.triggerAttackRelease(
+        this.sampler.triggerAttackRelease(
             midi.note,                     // 音符名称（如 "C4"）
             midi.duration_ticks / 480,  // 音符持续时间
             Tone.now(),                           // 立即播放
@@ -706,8 +733,7 @@ class MouseTrigger {
 
 }
 class MusicGame {
-    private barX: { [key: string]: number };
-    private canvasManager: CanvasManager;
+    //定义类变量
     private notes: NoteBar[]; // 存储所有音符
     private myDashedLine: DashedLine; // 虚线
     private myLinearBox: LinearBox; // 渐变框
@@ -715,7 +741,11 @@ class MusicGame {
     private myline: TriggerLine; // 触发线
     private mouseTrigger: MouseTrigger; // 鼠标触发
     private myDustManager: DustManager[]=[]; // 尘埃管理器
+    private myAudioManager: AudioManager; // 音频管理器
+    //其他变量
     private noteSpawnInterval: number; // 音符生成间隔（毫秒）
+    private barX: { [key: string]: number };
+    private canvasManager: CanvasManager;
 
     constructor() {
         this.canvasManager = new CanvasManager();
@@ -741,6 +771,7 @@ class MusicGame {
             this.myDustManager.push(dustManager);
         }
         this.mouseTrigger = new MouseTrigger(this.myTriggerArea.triggerArray, this.myLinearBox.linearBox,this.myDustManager);
+        this.myAudioManager = new AudioManager();
         this.noteSpawnInterval = 1000; // 每 1 秒生成一个音符
     }
 
@@ -760,68 +791,39 @@ class MusicGame {
             this.myDustManager[i].init();
         }
         //test---------------------------------------------------------------
-        // ✅ 将共享变量提升到外层作用域
-        // ✅ 初始化只执行一次
         document.getElementById('myButton')?.addEventListener('click', async () => {
-            await Tone.start();
-            console.log('audio is ready');
-            // ✅ 加载资源
-            async function setup() {
-                try {
-                    console.log('⏳ 加载资源...');
-                    [jsonData, sampler] = await Promise.all([
-                        fetch('/sheets/touhou2.json').then(res => res.json()),
-                        new Tone.Sampler({
-                            urls: { C4: '/audio/C4piano.mp3' },
-                            release: 1
-                        }).toDestination()
-                    ]);
-                    console.log('🎉 所有资源加载完成');      
-                    // ✅ 初始化完成后启用播放按钮
-                    document.getElementById('myAudio')?.removeAttribute('disabled');
-                } catch (err) {
-                    console.error('初始化失败:', err);
-                }
-            }
-            await setup();
+            this.myAudioManager.init();
         });
-        let currentIndex = 0;
-        let timeoutId: NodeJS.Timeout | null = null;
         document.getElementById('myAudio')?.addEventListener('click', () => {
             const self = this; // 保存外部 this 引用
-            if (!jsonData || !sampler) return;
-            // 如果已经在播放，则停止
-            if (timeoutId) {
-                clearTimeout(timeoutId);
-                timeoutId = null;
-                currentIndex = 0;
-                console.log('播放已停止');
-                return;
-            }
-            const notes = jsonData.track_1.notes;
+            //播放开关
+            if (!self.myAudioManager.playNote()) {
+                return
+            };
+            const notes = this.myAudioManager.jsonData.track_1.notes;//1
             playNextNote();
             function playNextNote() {
-                if (currentIndex >= notes.length) {
-                    timeoutId = null;
-                    currentIndex = 0;
+                if (self.myAudioManager.currentIndex >= self.myAudioManager.midiNotes.length) {
+                    self.myAudioManager.timeoutId = null;
+                    self.myAudioManager.currentIndex = 0;
                     console.log('所有音符已播放完毕');
                     return;
                 }
-                const currentNote = notes[currentIndex];
+                const currentNote = notes[self.myAudioManager.currentIndex];
                 //console.log('🔊 播放:', currentNote.note);
                 const [type, x] = self.GetX(currentNote.note); // 随机 x 位置
                 const speed = self.getRandomSpeed(); // 随机速度
                 self.createNoteBar(x, type, speed,currentNote); // 创建音符
                 // 计算到下一个音符的间隔
                 let interval = 0;
-                if (currentIndex < notes.length - 1) {
-                    const nextNote = notes[currentIndex + 1];
-                    interval = (nextNote.start_ticks - currentNote.start_ticks) / jsonData.time_division * 1000; // 转换为毫秒
+                if (self.myAudioManager.currentIndex < notes.length - 1) {
+                    const nextNote = notes[self.myAudioManager.currentIndex + 1];
+                    interval = (nextNote.start_ticks - currentNote.start_ticks) / self.myAudioManager.jsonData.time_division * 1000; // 转换为毫秒
                     //console.log('⏱️ 到下一个音符的间隔(ms):', interval);
                 }
-                currentIndex++;
-                if (currentIndex < notes.length) {
-                    timeoutId = setTimeout(playNextNote, interval);
+                self.myAudioManager.currentIndex++;
+                if (self.myAudioManager.currentIndex < notes.length) {
+                    self.myAudioManager.timeoutId = setTimeout(playNextNote, interval);
                 }
             }
         });
@@ -856,7 +858,7 @@ class MusicGame {
     //test--------------------------------------------------------------------
     // 创建音符
     private createNoteBar(x: number, type: string, speed: number,midi:MidiNote): void {
-        const noteBar = new NoteBar(this.canvasManager.app, this.canvasManager.container, x, speed,type,this.canvasManager.texture1,midi);
+        const noteBar = new NoteBar(this.canvasManager.app, this.canvasManager.container, x, speed,type,this.canvasManager.texture1,midi,this.myAudioManager.sampler);
         this.notes.push(noteBar);
     }
     // 启动动画循环
@@ -876,16 +878,54 @@ class MusicGame {
     private getRandomSpeed(): number {
         return window.innerHeight * 0.005; // 随机速度
     }
-}
-//test-----------------------------
-interface MidiNote {
-    start_ticks: number;
-    note: string;
-    duration_ticks: number;
-    velocity: number;
-    midi_value: number;
-    frequency_hz: number;
-    channel: number;
+}  
+class AudioManager {
+    public currentIndex = 0;
+    public timeoutId: NodeJS.Timeout | null = null;
+    public midiNotes!: MidiNote[];
+    public jsonData!: any;
+    public sampler!: Tone.Sampler;
+    constructor() {
+    }
+    //初始化
+    public async init(): Promise<void> {
+        await this.audioSetUp();
+        this.midiNotes = this.jsonData.track_1.notes;
+    }
+    // 加载音频资源
+    private async audioSetUp(): Promise<void> {
+        await Tone.start();
+        try {
+            console.log('加载资源...');
+            [this.jsonData, this.sampler] = await Promise.all([
+                fetch('/sheets/touhou2.json').then(res => res.json()),
+                new Tone.Sampler({
+                    urls: { C4: '/audio/C4piano.mp3' },
+                    release: 1
+                }).toDestination()
+            ]);
+            console.log('所有资源加载完成');      
+            // 初始化完成后启用播放按钮
+            document.getElementById('myAudio')?.removeAttribute('disabled');
+        } catch (err) {
+            console.error('初始化失败:', err);
+        }
+    }
+    public playNote(): boolean {
+        // 检查资源是否加载完成
+        if (!this.jsonData || !this.sampler) {
+            return true;
+        }
+        // 如果已经在播放，则停止
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
+            this.timeoutId = null;
+            this.currentIndex = 0;
+            console.log('播放已停止');
+            return false;
+        }
+        return true;
+    }
 }
 // 创建 MusicGame 实例并初始化
 (async () => {
