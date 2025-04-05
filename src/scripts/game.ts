@@ -829,6 +829,10 @@ class MusicGame {
         });
     }
     //test--------------------------------------------------------------------
+    // public playNextNote(): void {
+        
+
+    // }
     private GetX(note: string): [string, number] {
         const barX = this.barX; // 音符 x 位置
         // 定义音符首字母到键的映射关系

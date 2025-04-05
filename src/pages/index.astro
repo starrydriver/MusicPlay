@@ -1,16 +1,160 @@
 ---
-// 欢迎使用 Astro！这些三破折号代码围栏之间的内容是你的 "component frontmatter"。它不会在浏览器中运行。
-console.log('这段代码在你的终端运行，而不是在浏览器中！');
+// src/pages/index.astro
 ---
-<!-- 下面是你的 "component template"。它只是 HTML，但加入了一些魔法，帮助你构建出色的模板。 -->
+
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8">
-    <title>音游世界</title>
-  </head>
-  <body>
-    <h1>欢迎来到音游世界！</h1>
-    <p>这里是游戏的介绍，欢迎来玩！</p>
-    <a href="/game/">点击此处进入游戏</a>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>音游世界-简单的游戏框架</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1561a8 0%, #f0ded2 40%, #4c8fce 100%);
+      color: white;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      border-radius: 9999px;
+      font-weight: bold;
+      transition: all 0.3s;
+      color: #0a0700;
+    }
+    .btn-primary1 {
+      background: #faab66;
+    }
+    .btn-primary1:hover {
+      transform: scale(1.05);
+      background: #e65a1f;
+    }
+    .btn-primary2 {
+      background: #de7ae9;
+    }
+    .btn-primary2:hover {
+      transform: scale(1.05);
+      background: #c740a3;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 导航区 -->
+  <header class="container">
+    <nav style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0;">
+      <div style="font-size: 1.5rem; font-weight: bold;">音游世界</div>
+      <div style="display: flex; gap: 1.5rem;">
+        <a href="#features" style="color: rgb(33, 46, 103); text-decoration: none;font-weight: bold">游戏特色</a>
+        <a href="#game" style="color: rgb(33, 46, 103); text-decoration: none;font-weight: bold">开始游戏</a>
+      </div>
+    </nav>
+  </header>
+ <!-- 夏日风格分行栏 -->
+  <div style="
+  height: 4px;
+  background: linear-gradient(90deg, 
+    #4299e1 0%, 
+    #81e6d9 30%, 
+    #f6ad55 60%, 
+    #f687b3 100%);
+  margin: 0.5rem 0 1rem;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  "></div>
+  <!-- 主内容区 -->
+  <main class="container" style="text-align: center; padding-top: 3rem;">
+    <!-- 英雄区 -->
+    <section style="margin-bottom: 4rem;">
+      <h1 style="font-size: 3rem; font-weight: bold; margin-bottom: 1.5rem;">
+        感受<span style="color: #bdec48;">节奏</span>的<span style="color: #a093ee;">脉动</span>
+      </h1>
+      <p style="font-size: 1.25rem; max-width: 600px; margin: 0 auto 2rem;">
+        一个热门曲目！ | 零个玩家实时竞技! | 仅支持六键输入！
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center;">
+        <a href="/game/" class="btn btn-primary1" style="">立即开玩</a>
+        <a href="#features" class="btn btn-primary2" style="">了解更多</a>
+      </div>
+      <img 
+        src="/images/xuanchuan.png" 
+        alt="游戏截图"
+        class="floating"
+        style="margin-top: 3rem; border-radius: 1rem; max-width: 70%;"
+      />
+    </section>
+
+    <!-- 特色卡片 -->
+    <section id="features" style="margin: 5rem 0;">
+      <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 2rem;">为什么选择我们？</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+        <div style="background: rgba(168, 85, 247, 0.2); padding: 2rem; border-radius: 1rem;">
+          <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">🎼 宝藏同人曲库</h3>
+          我们坚持车万同人精神<br>
+          即使是测试项目，也要选用唯一指定曲目：<span style="color: #ec4899; font-weight: bold;">《碎月》</span><br>
+          <span style="font-size: 0.8em;">(其实是因为这首MIDI比较简单)</span>
+        </div>
+        <div style="background: rgba(168, 85, 247, 0.2); padding: 2rem; border-radius: 1rem;">
+          <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">🌍 全球竞技</h3>
+          <p>与全球玩家实时PK,100%胜率保障<br>
+          当前玩家数:0</p>
+        </div>
+        <div style="background: rgba(168, 85, 247, 0.2); padding: 2rem; border-radius: 1rem;">
+          <h3 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">✨ 炫酷背景</h3>
+          <p>紫色星空动态背景，让你沉浸在音乐宇宙之中</p>
+          <span style="font-size: 0.8em;">(从PIXIJS官网偷来的)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 游戏入口 -->
+    <section id="game" style="margin: 5rem 0; background: rgba(236, 72, 153, 0.1); padding: 3rem; border-radius: 1rem;">
+      <h2 style="font-size: 2rem; font-weight: bold; margin-bottom: 1.5rem;">准备好开始了吗？</h2>
+      <p style="margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+        点击下方按钮立即进入音乐世界,首次游玩赠送10000000000金币!
+      </p>
+      <a href="/game/" class="btn btn-primary1" style="padding: 1rem 3rem; font-size: 1.25rem;">
+        开始游戏 →
+      </a>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer style="text-align: center; padding: 2rem; margin-top: 3rem; border-top: 1px solid #4c1d95;">
+    <p>© 2025 音游世界 | TOUHOU经典</p>
+  </footer>
+
+  <!-- 简易音乐播放器 -->
+  <div style="position: fixed; bottom: 20px; right: 20px;">
+    <button id="musicBtn" style="background: #815cb9; color: white; border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 1.5rem;">🎸</button>
+    <audio loop src="/audio/Can't look away.mp3"></audio>
+  </div>
+</body>
+  <script>
+    const musicBtn = document.getElementById('musicBtn');
+    const audio = document.querySelector('audio');
+    
+    musicBtn!.addEventListener('click', function() {
+      if (audio!.paused) {
+        audio!.play();
+        musicBtn!.textContent = '🎙️'; // 可以保持原样或改为暂停图标
+      } else {
+        audio!.pause();
+        musicBtn!.textContent = '🎸';
+      }
+    });
+  </script>
 </html>
