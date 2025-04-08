@@ -46,7 +46,8 @@ class CanvasManager {
     private baseSpeed = 0.025; // 恒定速度
     private starStretch = 5;
     private starBaseSize = 0.05;
-
+    //文字渲染相关变量
+    private text!: BitmapText;
     constructor() {
         this.app = new Application();
         this.container = new Container();
@@ -75,22 +76,35 @@ class CanvasManager {
         this.initStars();
         this.startAnimation();
         // 文字渲染
+        this.text = new BitmapText;
         this.textRender();
+        window.addEventListener('resize', () => this.textPosition());
     }
     //文字渲染
     private textRender(): void {
-        const text = new BitmapText({
+        const windowWidth = window.innerWidth; // 窗口宽度
+        const windowHeight = window.innerHeight; // 窗口高度
+        this.text = new BitmapText({
             text: ' A    S    D    J    K    L',
             style: {
-                fontSize: 50,
+                fontSize: windowWidth * 0.03,
                 fill: '#ffffff',
                 align: 'center',
-                letterSpacing: 9,
+                letterSpacing: windowWidth * 0.01,
             }
         });
-        text.x = this.app.screen.width / 4;
-        text.y = this.app.screen.height / 1.2;
-        this.container.addChild(text);
+        this.text.x = windowWidth / 4;
+        this.text.y = windowHeight / 1.2;
+        this.container.addChild(this.text);
+    }
+    //文字位置
+    public textPosition(): void {
+        let windowWidth = window.innerWidth; // 窗口宽度
+        let windowHeight = window.innerHeight; // 窗口高度
+        this.text.style.fontSize = windowWidth * 0.03;
+        this.text.style.letterSpacing = windowWidth * 0.01;
+        this.text.x = windowWidth / 4;
+        this.text.y = windowHeight / 1.2;
     }
     // 初始化星星
     private initStars(): void {
@@ -171,14 +185,14 @@ class DashedLine {
 	   // 更新触发线的样式
     private updateDashedLine(): void {
         const dpr = window.devicePixelRatio || 1;
-        const windowWidth = window.innerWidth * dpr;
-        const windowHeight = window.innerHeight * dpr;
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
         // 动态调整 canvas 大小
         this.canvas.width = windowWidth;
         this.canvas.height = windowHeight;
-        this.canvas.style.width = `${window.innerWidth}px`;
-        this.canvas.style.height = `${window.innerHeight}px`;
-        this.dashedLineCanvas.scale(dpr, dpr);
+        this.canvas.style.width = `100%`;
+        this.canvas.style.height = `100%`;
+        //this.dashedLineCanvas.scale(dpr, dpr);
         // 清空画布
         this.dashedLineCanvas.clearRect(0, 0, windowWidth, windowHeight);
         // 设置虚线样式
