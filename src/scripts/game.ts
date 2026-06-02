@@ -11,6 +11,18 @@ interface MidiNote {
     frequency_hz: number;
     channel: number;
 }
+
+type RankingEntry = {
+    name: string;
+    score: number;
+    createdAt?: number;
+};
+
+type RankingServiceApi = {
+    submitScore: (name: string, score: number) => Promise<{ success: boolean; message?: string }>;
+    refresh: () => void;
+    getEntries: () => RankingEntry[];
+};
 // class AppState{
 //     private static instance:AppState;
 //     //public jsonData:MidiNote;
@@ -90,7 +102,7 @@ class CanvasManager {
                 fontSize: windowWidth * 0.03,
                 fill: '#ffffff',
                 align: 'center',
-                letterSpacing: windowWidth * 0.01,
+                letterSpacing: windowWidth * 0.0075,
             }
         });
         this.text.x = windowWidth / 4;
@@ -102,7 +114,7 @@ class CanvasManager {
         let windowWidth = window.innerWidth; // 窗口宽度
         let windowHeight = window.innerHeight; // 窗口高度
         this.text.style.fontSize = windowWidth * 0.03;
-        this.text.style.letterSpacing = windowWidth * 0.01;
+        this.text.style.letterSpacing = windowWidth * 0.0;
         this.text.x = windowWidth / 4;
         this.text.y = windowHeight / 1.2;
     }
@@ -287,7 +299,8 @@ class TriggerArea {
     }
     //触发区数组
     public addTrigger(bar:NoteBar):void{
-        if (bar.bar.y > this.AreaY &&bar.noteType == "noteA" && this.triggerArray["noteA"].includes(bar) === false) {
+        if (bar.bar.y > this.AreaY &&bar.noteType == "noteA" 
+            && this.triggerArray["noteA"].includes(bar) === false) {
             this.triggerArray["noteA"].push(bar); // 将音符添加到数组
             //console.log('barY:', bar.bar.y+",AreaY:",this.AreaY);
             //console.log('音符注入数组');
@@ -483,6 +496,7 @@ class NoteBar {
     private speed: number; // 下落速度
     public noteType: string; // 音符类型
     public isAdd: boolean; // 是否添加到过触发区
+    private onHit: () => void;
     private particles: newparticle[] = [];
     private particleContainer: ParticleContainer= new ParticleContainer();
     private barTexture: Texture<TextureSource<any>>;
@@ -491,7 +505,7 @@ class NoteBar {
     public sampler:Tone.Sampler;
 
     
-    constructor(app: Application, container: Container, x: number, speed: number,type:string,barTexture:Texture<TextureSource<any>>,midi:MidiNote,sampler:Tone.Sampler) {
+    constructor(app: Application, container: Container, x: number, speed: number,type:string,barTexture:Texture<TextureSource<any>>,midi:MidiNote,sampler:Tone.Sampler,onHit: () => void) {
         this.app = app;
         this.container = container;
         this.speed = speed;
@@ -509,6 +523,7 @@ class NoteBar {
         //test----------------------------
         this.midi = midi;
         this.sampler = sampler;
+        this.onHit = onHit;
     }
     //更新样式
     public updateSize(x: number): void {
@@ -545,6 +560,7 @@ class NoteBar {
         }
         else if (this.isAdd == true) {
             this.container.removeChild(this.bar);
+            this.onHit();
             this.PlayMidi(this.midi);
             array.splice(array.indexOf(this), 1); // 从数组中移除
             this.particlePlay();
@@ -595,7 +611,7 @@ class NoteBar {
         });
     }
 }
-//鼠标触发
+//事件触发
 class MouseTrigger {
     private keys: { [key: string]: boolean } = {};
     private noteArray: {[Key:string]:NoteBar[]};
@@ -756,6 +772,21 @@ class MusicGame {
     private mouseTrigger: MouseTrigger; // 鼠标触发
     private myDustManager: DustManager[]=[]; // 尘埃管理器
     private myAudioManager: AudioManager; // 音频管理器
+    private isAudioReady = false;
+    private score = 0;
+    private isGameRunning = false;
+    private pendingAutoFinish = false;
+    private uploadedThisRound = false;
+    private startButton!: HTMLButtonElement | null;
+    private endButton!: HTMLButtonElement | null;
+    private scoreValue!: HTMLElement | null;
+    private resultModal!: HTMLElement | null;
+    private resultScore!: HTMLElement | null;
+    private playerName!: HTMLInputElement | null;
+    private uploadButton!: HTMLButtonElement | null;
+    private restartButton!: HTMLButtonElement | null;
+    private uploadHint!: HTMLElement | null;
+    private leaderboardList!: HTMLElement | null;
     //其他变量
     private noteSpawnInterval: number; // 音符生成间隔（毫秒）
     private barX: { [key: string]: number };
@@ -789,6 +820,134 @@ class MusicGame {
         this.noteSpawnInterval = 1000; // 每 1 秒生成一个音符
     }
 
+    private updateScoreUI(): void {
+        if (this.scoreValue) {
+            this.scoreValue.textContent = String(this.score);
+        }
+    }
+
+    private renderLeaderboard(): void {
+        if (!this.leaderboardList) {
+            return;
+        }
+
+        const entries = window.RankingService?.getEntries().slice(0, 5) ?? [];
+        this.leaderboardList.innerHTML = entries.length
+            ? entries.map((entry, index) => `<li><span>${index + 1}. ${entry.name}</span><strong>${entry.score}</strong></li>`).join('')
+            : '<li><span>暂无记录</span><strong>-</strong></li>';
+    }
+
+    private openResultModal(): void {
+        if (!this.resultModal || !this.resultScore || !this.uploadHint || !this.uploadButton) {
+            return;
+        }
+
+        this.resultScore.textContent = String(this.score);
+        this.uploadHint.textContent = '';
+        this.uploadButton.disabled = this.uploadedThisRound;
+        this.uploadButton.textContent = this.uploadedThisRound ? '已上传' : '上传排行榜';
+        this.renderLeaderboard();
+        this.resultModal.classList.add('open');
+        this.resultModal.setAttribute('aria-hidden', 'false');
+    }
+
+    private closeResultModal(): void {
+        if (!this.resultModal) {
+            return;
+        }
+
+        this.resultModal.classList.remove('open');
+        this.resultModal.setAttribute('aria-hidden', 'true');
+    }
+
+    private stopTimers(): void {
+        if (this.myAudioManager.timeoutId) {
+            clearTimeout(this.myAudioManager.timeoutId);
+            this.myAudioManager.timeoutId = null;
+        }
+    }
+
+    private finishGame(): void {
+        if (!this.isGameRunning && !this.pendingAutoFinish) {
+            return;
+        }
+
+        this.isGameRunning = false;
+        this.pendingAutoFinish = false;
+        this.stopTimers();
+        this.canvasManager.app.ticker.stop();
+        if (this.startButton) {
+            this.startButton.textContent = '开始游戏';
+        }
+        this.openResultModal();
+    }
+
+    private async startGame(): Promise<void> {
+        if (this.isGameRunning) {
+            return;
+        }
+
+        if (!this.isAudioReady) {
+            await this.myAudioManager.init();
+            this.isAudioReady = true;
+        }
+
+        this.canvasManager.app.ticker.start();
+        this.closeResultModal();
+        this.uploadedThisRound = false;
+        this.score = 0;
+        this.updateScoreUI();
+        this.isGameRunning = true;
+        this.pendingAutoFinish = false;
+        this.myAudioManager.currentIndex = 0;
+        this.stopTimers();
+        if (this.startButton) {
+            this.startButton.textContent = '开始游戏';
+        }
+
+        const notes = this.myAudioManager.jsonData.track_1.notes;
+        const playNextNote = () => {
+            if (!this.isGameRunning) {
+                return;
+            }
+
+            if (this.myAudioManager.currentIndex >= this.myAudioManager.midiNotes.length) {
+                this.myAudioManager.timeoutId = null;
+                this.myAudioManager.currentIndex = 0;
+                this.pendingAutoFinish = true;
+                if (this.notes.length === 0) {
+                    this.finishGame();
+                }
+                return;
+            }
+
+            const currentNote = notes[this.myAudioManager.currentIndex];
+            const [type, x] = this.GetX(currentNote.note);
+            const speed = this.getRandomSpeed();
+            this.createNoteBar(x, type, speed, currentNote);
+
+            let interval = 0;
+            if (this.myAudioManager.currentIndex < notes.length - 1) {
+                const nextNote = notes[this.myAudioManager.currentIndex + 1];
+                interval = (nextNote.start_ticks - currentNote.start_ticks) / this.myAudioManager.jsonData.time_division * 1000;
+            }
+
+            this.myAudioManager.currentIndex++;
+            if (this.myAudioManager.currentIndex < notes.length) {
+                this.myAudioManager.timeoutId = setTimeout(playNextNote, interval);
+            } else {
+                this.myAudioManager.timeoutId = null;
+                this.myAudioManager.currentIndex = 0;
+                this.pendingAutoFinish = true;
+                if (this.notes.length === 0) {
+                    this.finishGame();
+                }
+            }
+        };
+
+        playNextNote();
+    }
+
     // 初始化应用
     public async init(): Promise<void> {
         await this.canvasManager.init();
@@ -804,42 +963,67 @@ class MusicGame {
         for (let i = 0; i < 6; i++) {
             this.myDustManager[i].init();
         }
-        //test---------------------------------------------------------------
-        document.getElementById('myButton')?.addEventListener('click', async () => {
-            this.myAudioManager.init();
+        this.startButton = document.getElementById('myButton') as HTMLButtonElement | null;
+        this.endButton = document.getElementById('endButton') as HTMLButtonElement | null;
+        this.scoreValue = document.getElementById('scoreValue');
+        this.resultModal = document.getElementById('resultModal');
+        this.resultScore = document.getElementById('resultScore');
+        this.playerName = document.getElementById('playerName') as HTMLInputElement | null;
+        this.uploadButton = document.getElementById('uploadScore') as HTMLButtonElement | null;
+        this.restartButton = document.getElementById('restartGame') as HTMLButtonElement | null;
+        this.uploadHint = document.getElementById('uploadHint');
+        this.leaderboardList = document.getElementById('leaderboardList');
+
+        if (!this.startButton || !this.endButton || !this.scoreValue || !this.resultModal || !this.resultScore || !this.playerName || !this.uploadButton || !this.restartButton || !this.uploadHint || !this.leaderboardList) {
+            return;
+        }
+
+        const uploadButton = this.uploadButton;
+        const uploadHint = this.uploadHint;
+        const playerName = this.playerName;
+        const resultModal = this.resultModal;
+
+        this.updateScoreUI();
+        this.renderLeaderboard();
+
+        this.startButton.addEventListener('click', () => {
+            void this.startGame();
         });
-        document.getElementById('myAudio')?.addEventListener('click', () => {
-            const self = this; // 保存外部 this 引用
-            //播放开关
-            if (!self.myAudioManager.playNote()) {
-                return
-            };
-            const notes = this.myAudioManager.jsonData.track_1.notes;//1
-            playNextNote();
-            function playNextNote() {
-                if (self.myAudioManager.currentIndex >= self.myAudioManager.midiNotes.length) {
-                    self.myAudioManager.timeoutId = null;
-                    self.myAudioManager.currentIndex = 0;
-                    console.log('所有音符已播放完毕');
-                    return;
-                }
-                const currentNote = notes[self.myAudioManager.currentIndex];
-                //console.log('🔊 播放:', currentNote.note);
-                const [type, x] = self.GetX(currentNote.note); // 随机 x 位置
-                const speed = self.getRandomSpeed(); // 随机速度
-                self.createNoteBar(x, type, speed,currentNote); // 创建音符
-                // 计算到下一个音符的间隔
-                let interval = 0;
-                if (self.myAudioManager.currentIndex < notes.length - 1) {
-                    const nextNote = notes[self.myAudioManager.currentIndex + 1];
-                    interval = (nextNote.start_ticks - currentNote.start_ticks) / self.myAudioManager.jsonData.time_division * 1000; // 转换为毫秒
-                    //console.log('⏱️ 到下一个音符的间隔(ms):', interval);
-                }
-                self.myAudioManager.currentIndex++;
-                if (self.myAudioManager.currentIndex < notes.length) {
-                    self.myAudioManager.timeoutId = setTimeout(playNextNote, interval);
-                }
+
+        this.endButton.addEventListener('click', () => {
+            this.finishGame();
+        });
+
+        this.uploadButton.addEventListener('click', async () => {
+            if (this.uploadedThisRound) {
+                uploadHint.textContent = '本局已经上传过一次了。';
+                return;
             }
+
+            const rankingService = window.RankingService;
+            if (!rankingService) {
+                uploadHint.textContent = '排行榜服务未加载。';
+                return;
+            }
+
+            const name = playerName.value.trim() || '匿名玩家';
+            const result = await rankingService.submitScore(name, this.score);
+
+            if (!result.success) {
+                uploadHint.textContent = result.message ?? '上传失败';
+                return;
+            }
+
+            this.uploadedThisRound = true;
+            uploadButton.disabled = true;
+            uploadButton.textContent = '已上传';
+            uploadHint.textContent = '已上传到排行榜。';
+            rankingService.refresh();
+            this.renderLeaderboard();
+        });
+
+        this.restartButton.addEventListener('click', () => {
+            window.location.reload();
         });
     }
     //test--------------------------------------------------------------------
@@ -876,7 +1060,10 @@ class MusicGame {
     //test--------------------------------------------------------------------
     // 创建音符
     private createNoteBar(x: number, type: string, speed: number,midi:MidiNote): void {
-        const noteBar = new NoteBar(this.canvasManager.app, this.canvasManager.container, x, speed,type,this.canvasManager.texture1,midi,this.myAudioManager.sampler);
+        const noteBar = new NoteBar(this.canvasManager.app, this.canvasManager.container, x, speed,type,this.canvasManager.texture1,midi,this.myAudioManager.sampler,() => {
+            this.score += 1;
+            this.updateScoreUI();
+        });
         this.notes.push(noteBar);
     }
     // 启动动画循环
@@ -890,6 +1077,9 @@ class MusicGame {
             });
             // 移除已经销毁的音符
             this.notes = this.notes.filter((note) => note.bar.parent !== null);
+            if (this.pendingAutoFinish && this.notes.length === 0) {
+                this.finishGame();
+            }
         });
     }
     // 获取随机速度
@@ -923,8 +1113,6 @@ class AudioManager {
                 }).toDestination()
             ]);
             console.log('所有资源加载完成');      
-            // 初始化完成后启用播放按钮
-            document.getElementById('myAudio')?.removeAttribute('disabled');
         } catch (err) {
             console.error('初始化失败:', err);
         }
@@ -932,7 +1120,7 @@ class AudioManager {
     public playNote(): boolean {
         // 检查资源是否加载完成
         if (!this.jsonData || !this.sampler) {
-            return true;
+            return false;
         }
         // 如果已经在播放，则停止
         if (this.timeoutId) {

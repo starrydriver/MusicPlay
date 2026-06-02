@@ -1,315 +1,104 @@
 ---
 // src/pages/index.astro
 ---
-
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>音游世界-简单的游戏框架</title>
+  <title>音游世界</title>
   <style>
-    body {
-      background: linear-gradient(135deg, #fde7cb 0%, #f6cb9a 100%);
-      color: #232323;
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      min-height: 100vh;
-      margin: 0;
-      letter-spacing: 0.01em;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-    /* 顶栏样式 */
-    .navbar-fixed {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      z-index: 100;
-      background: linear-gradient(90deg, #f7faf7 80%, #f2f3f7 100%);
-      box-shadow: 0 2px 0 0 #1111, 0 2.5px 8px -2px rgba(0,0,0,0.10);
-      border-bottom: 0.5px solid #e0e0e0;
-      /* 护眼白 */
-      /* 细黑色阴影交界 */
-      box-shadow:
-        0 2px 0 0 #111, /* 细黑色阴影 */
-        0 2.5px 8px -2px rgba(0,0,0,0.10);
-      transition: box-shadow 0.2s;
-    }
-    .navbar-content {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-    }
-    .navbar-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      letter-spacing: 0.04em;
-      color: #232323;
-      user-select: none;
-    }
-    .navbar-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-    .navbar-links a {
-      color: #232323;
-      text-decoration: none;
-      font-weight: bold;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 2px;
-      transition: border 0.2s, color 0.2s;
-      border-radius: 2px;
-      padding: 0.2em 0.5em;
-    }
-    .navbar-links a:hover {
-      border-bottom: 2px solid #232323;
-      color: #3a3a3a;
-      background: #f2f3f7;
-    }
-    .navbar-spacer {
-      height: 68px;
-      /* 顶栏高度占位，防止内容被遮挡 */
-    }
-    .btn {
-      display: inline-block;
-      padding: 0.7rem 2rem;
-      border-radius: 9999px;
-      font-weight: bold;
-      transition: all 0.2s;
-      color: #232323;
-      background: linear-gradient(90deg, #fdf6e3 60%, #f6ecd2 100%);
-      border: 2px solid #e6d8b4;
-      box-shadow: 0 2px 12px 0 rgba(200,180,120,0.08);
-      text-decoration: none;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn:hover {
-      background: linear-gradient(90deg, #f6ecd2 0%, #fdf6e3 100%);
-      color: #232323;
-      border-color: #e6c96b;
-      box-shadow: 0 4px 18px 0 rgba(200,180,120,0.13);
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .floating {
-      animation: float 3s ease-in-out infinite;
-    }
-    a {
-      color: #232323;
-      text-decoration: underline;
-    }
-    .feature-card {
-      background: linear-gradient(120deg, #fdf6e3 60%, #f6ecd2 100%);
-      border: 1px solid #e6d8b4;
-      padding: 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 2px 12px 0 rgba(200,180,120,0.10);
-      transition: box-shadow 0.2s, border 0.2s;
-      position: relative;
-    }
-    .feature-card:hover {
-      box-shadow: 0 6px 24px 0 rgba(200,180,120,0.13);
-      border: 1.5px solid #e6c96b;
-    }
-    .divider {
-      height: 3px;
-      background: linear-gradient(90deg, #e0e0e0 0%, #bdbdbd 100%);
-      margin: 0.5rem 0 1.5rem;
-      border-radius: 2px;
-      box-shadow: 0 1px 4px 0 rgba(180,180,180,0.08);
-    }
-    h1, h2, h3 {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      font-weight: bold;
-      letter-spacing: 0.02em;
-      margin-top: 0;
-    }
-    h1 {
-      font-size: 2.7rem;
-      background: linear-gradient(90deg, #232323 60%, #bdbdbd 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    h2 {
-      font-size: 1.6rem;
-      color: #232323;
-      margin-bottom: 2rem;
-      /* 移除左侧粗线和渐变背景，改为简约底部细线 */
-      border-left: none;
-      padding-left: 0;
-      background: none;
-      display: block;
-      border-bottom: 1.5px solid #bdbdbd;
-      padding-bottom: 0.3em;
-      margin-left: auto;
-      margin-right: auto;
-      width: fit-content;
-      letter-spacing: 0.04em;
-      font-weight: 600;
-    }
-    h3 {
-      font-size: 1.13rem;
-      color: #444;
-      margin-bottom: 1rem;
-    }
-    .feature-card span, .feature-card p {
-      color: #666;
-    }
-    .feature-card span[style*="font-weight: bold"] {
-      color: #232323;
-    }
-    .feature-card .icon {
-      font-size: 1.6em;
-      margin-bottom: 0.5em;
-      display: block;
-    }
-    .feature-card:not(:last-child) {
-      margin-bottom: 0.5rem;
-    }
-    .feature-card::after {
-      content: '';
-      display: block;
-      position: absolute;
-      left: 1.5rem; right: 1.5rem; bottom: 1rem;
-      height: 2px;
-      background: linear-gradient(90deg, #e0e0e0 0%, #f7f8fa 100%);
-      opacity: 0.3;
-      border-radius: 1px;
-    }
-    .feature-card:last-child::after {
-      display: none;
-    }
-    footer {
-      border-top: 1px solid #e0e0e0;
-      color: #888;
-      background: linear-gradient(90deg, #f7f8fa 80%, #e9ebee 100%);
-    }
-    /* 简易播放器按钮 */
-    #musicBtn {
-      background: linear-gradient(120deg, #fff 60%, #f2f3f7 100%);
-      color: #232323;
-      border: 2px solid #bdbdbd;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      font-size: 1.5rem;
-      transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
-      box-shadow: 0 2px 8px 0 rgba(180,180,180,0.10);
-    }
-    #musicBtn:hover {
-      background: #232323;
-      color: #fff;
-      border-color: #232323;
-      box-shadow: 0 4px 18px 0 rgba(120,120,120,0.13);
-    }
+    :root{--bg:#ffffff;--fg:#111111;--muted:#666666;--surface:#f5f5f5}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:var(--bg);color:var(--fg);min-height:100vh}
+    .container{max-width:900px;margin:0 auto;padding:1.5rem}
+    .header{position:fixed;left:0;right:0;top:0;background:var(--surface);border-bottom:1px solid #e6e6e6;padding:0.75rem 1rem;display:flex;align-items:center;justify-content:space-between}
+    .title{font-weight:600}
+    .main{padding-top:64px}
+    .hero{text-align:center;padding:2rem 0}
+    .btn{display:inline-block;padding:0.6rem 1rem;border-radius:6px;border:1px solid #ddd;background:transparent;color:var(--fg);text-decoration:none}
+    .options{margin:0;padding-left:1.25rem;color:var(--muted);line-height:1.8}
+    .ranking-meta{display:flex;justify-content:space-between;gap:1rem;align-items:center;margin:0.5rem 0;color:var(--muted);font-size:0.95rem}
+    .leaderboard{margin:0;padding:0;list-style:none;border-top:1px solid #eee}
+    .leaderboard li{display:flex;justify-content:space-between;gap:1rem;padding:0.65rem 0;border-bottom:1px solid #f1f1f1;color:#444}
+    .ranking-actions{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.75rem}
+    footer{padding:1.5rem;text-align:center;color:var(--muted);border-top:1px solid #eee;margin-top:2rem}
+    .player{position:fixed;right:1rem;bottom:1rem;display:flex;gap:0.5rem;align-items:center}
+    #musicBtn{width:44px;height:44px;border-radius:6px;border:1px solid #ddd;background:transparent;cursor:pointer}
+    small{color:var(--muted)}
   </style>
 </head>
 
 <body>
-  <!-- 固定顶栏 -->
-  <nav class="navbar-fixed">
-    <div class="navbar-content">
-      <div class="navbar-title">音游世界</div>
-      <div class="navbar-links">
-        <a href="#features">游戏特色</a>
-        <a href="#game">开始游戏</a>
-      </div>
-    </div>
-  </nav>
-  <!-- 灰色分割线 -->
-  <div class="divider"></div>
-  <!-- 主内容区 -->
-  <main class="container" style="text-align: center; padding-top: 3rem;">
-    <!-- 英雄区 -->
-    <section style="margin-bottom: 4rem;">
-      <h1>
-        感受<span style="color: #232323;">节奏</span>的<span style="color: #232323;">脉动</span>
-      </h1>
-      <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem; color: #555;">
-        一个热门曲目！ | 零个玩家实时竞技! | 仅支持六键输入！
-      </p>
-      <div style="display: flex; gap: 1rem; justify-content: center;">
-        <a href="/game/" class="btn">立即开玩</a>
-        <a href="#features" class="btn">了解更多</a>
-      </div>
-      <img 
-        src="/images/xuanchuan.png" 
-        alt="游戏截图"
-        class="floating"
-        style="margin-top: 3rem; border-radius: 1rem; max-width: 70%; border: 1px solid #e0e0e0; background: #fafbfc; box-shadow: 0 4px 24px 0 rgba(180,180,180,0.10);"
-      />
-    </section>
+  <header class="header">
+    <div class="title">音游世界</div>
+  </header>
 
-    <!-- 特色卡片 -->
-    <section id="features" style="margin: 5rem 0;">
-      <h2>为什么选择我们？</h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
-        <div class="feature-card">
-          <span class="icon">🎼</span>
-          <h3>宝藏同人曲库</h3>
-          我们坚持车万同人精神<br>
-          即使是测试项目，也要选用唯一指定曲目：<span style="font-weight: bold;">《碎月》</span><br>
-          <span style="font-size: 0.8em;">(其实是因为这首MIDI比较简单)</span>
-        </div>
-        <div class="feature-card">
-          <span class="icon">🌍</span>
-          <h3>全球竞技</h3>
-          <p>与全球玩家实时PK,100%胜率保障<br>
-          当前玩家数:0</p>
-        </div>
-        <div class="feature-card">
-          <span class="icon">✨</span>
-          <h3>炫酷背景</h3>
-          <p>紫色星空动态背景，让你沉浸在音乐宇宙之中</p>
-          <span style="font-size: 0.8em;">(从PIXIJS官网偷来的)</span>
-        </div>
+  <main class="container main">
+    <section class="hero">
+      <h1 style="margin:0;font-size:1.8rem">节奏之旅</h1>
+      <p style="color:var(--muted)">简洁测试页面 · 六键输入</p>
+      <div style="margin-top:1rem">
+        <a href="/game/" class="btn">进入游戏</a>
       </div>
     </section>
 
-    <!-- 游戏入口 -->
-    <section id="game" style="margin: 5rem 0; background: linear-gradient(120deg, #f8f8fa 60%, #f2f3f7 100%); padding: 3rem; border-radius: 1rem; border: 1px solid #e0e0e0; box-shadow: 0 2px 12px 0 rgba(180,180,180,0.10);">
-      <h2>准备好开始了吗？</h2>
-      <p style="margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; color: #555;">
-        点击下方按钮立即进入音乐世界,首次游玩赠送10000000000金币!
-      </p>
-      <a href="/game/" class="btn" style="padding: 1rem 3rem; font-size: 1.1rem;">
-        开始游戏 →
-      </a>
+    <section id="features">
+      <h2 style="font-size:1.1rem;margin-bottom:0.5rem">选项</h2>
+      <ol class="options">
+        <li><strong>简介：</strong>目前只提供《碎月》一首音乐。</li>
+        <li><strong>排行榜：</strong>支持上传排行榜，实时查看得分。</li>
+        <li><strong>玩法：</strong>进入游戏界面，先点击开始游戏即可游玩。</li>
+        <li style="color: #666; background-color: #f5f5f5; padding: 8px 12px; border-radius: 6px; list-style: none; margin-top: 8px;">
+          💡 提示：支持 ASD JKL 六键游玩
+        </li>
+      </ol>
     </section>
+
+    <section id="ranking" style="margin-top:1.5rem">
+      <h2 style="font-size:1.1rem">排行榜</h2>
+      <div class="ranking-meta">
+        <span id="rankingCount">共 0 条</span>
+        <span id="rankingPageInfo">1/1</span>
+      </div>
+      <ul id="rankingList" class="leaderboard"></ul>
+      <div class="ranking-actions">
+        <button id="rankingPrev" class="btn">上一页</button>
+        <button id="rankingNext" class="btn">下一页</button>
+      </div>
+    </section>
+
+    <section id="game" style="margin-top:1.5rem">
+      <h2 style="font-size:1.1rem">开始</h2>
+      <p style="color:var(--muted)">点击进入游戏页面。</p>
+      <a href="/game/" class="btn">开始 →</a>
+    </section>
+
   </main>
 
-  <!-- 页脚 -->
-  <footer style="text-align: center; padding: 2rem; margin-top: 3rem;">
-    <p>© 2025 音游世界 | TOUHOU经典</p>
-  </footer>
-
-  <!-- 简易音乐播放器 -->
-  <div style="position: fixed; bottom: 20px; right: 20px;">
-    <button id="musicBtn">🎸</button>
-    <audio loop src="/audio/Can't look away.mp3"></audio>
+  <div class="player">
+    <button id="musicBtn" aria-label="播放">▶</button>
+    <audio id="audio" src="/audio/Can't look away.mp3"></audio>
   </div>
-</body>
+
+  <script src="../services/ranking.ts"></script>
   <script>
-    const musicBtn = document.getElementById('musicBtn');
-    const audio = document.querySelector('audio');
-    musicBtn!.addEventListener('click', function() {
-      if (audio!.paused) {
-        audio!.play();
-        musicBtn!.textContent = '🎙️';
+    const btn = document.getElementById('musicBtn');
+    const audio = document.getElementById('audio');
+
+    if (!(btn instanceof HTMLButtonElement) || !(audio instanceof HTMLAudioElement)) {
+      throw new Error('播放器节点未找到');
+    }
+
+    btn.addEventListener('click', () => {
+      if (audio.paused) {
+        void audio.play();
+        btn.textContent = '⏸';
+
       } else {
-        audio!.pause();
-        musicBtn!.textContent = '🎸';
+        audio.pause();
+        btn.textContent = '▶';
       }
     });
   </script>
+</body>
 </html>

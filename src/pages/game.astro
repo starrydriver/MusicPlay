@@ -5,28 +5,156 @@
   <head>
     <meta charset="UTF-8">
     <title>Pixi.js in Astro</title>
-  </head>
-  <body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-      /* 确保 body 和 html 元素没有边距和内边距 */
-      .music-game{
-          margin: 0;
-          padding: 0;
-          overflow: hidden; /* 隐藏滚动条 */
-          width: 100%;
-          height: 100%;
-      }
-      body, html {
+      html,
+      body {
         margin: 0;
         padding: 0;
-        overflow: hidden; /* 隐藏滚动条 */
+        overflow: hidden;
         width: 100%;
         height: 100%;
       }
+
+      .controls {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 20;
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .score-hud {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 20;
+        padding: 0.5rem 0.8rem;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        background: rgba(255, 255, 255, 0.92);
+        color: #111;
+        font: 600 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.6rem 1rem;
+        border-radius: 6px;
+        border: 1px solid #ddd;
+        background: #fff;
+        color: #111;
+        text-decoration: none;
+        font: 500 14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background: #f5f5f5;
+      }
+
+      .music-game {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 30;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(4px);
+      }
+
+      .modal.open {
+        display: flex;
+      }
+
+      .modal-card {
+        width: min(92vw, 420px);
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        background: #fff;
+        color: #111;
+        padding: 1.25rem;
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+        font: 400 14px/1.5 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      }
+
+      .modal-card h2 {
+        margin: 0 0 0.75rem;
+        font-size: 1.1rem;
+      }
+
+      .modal-card p {
+        margin: 0.25rem 0 0.75rem;
+        color: #666;
+      }
+
+      .modal-card input {
+        width: 100%;
+        padding: 0.65rem 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        background: #fff;
+        color: #111;
+        margin-bottom: 0.75rem;
+        font: inherit;
+      }
+
+      .modal-actions {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin: 0.75rem 0;
+      }
+
+      .leaderboard {
+        margin: 0.75rem 0 0;
+        padding: 0;
+        list-style: none;
+        border-top: 1px solid #eee;
+      }
+
+      .leaderboard li {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.55rem 0;
+        border-bottom: 1px solid #f1f1f1;
+        color: #444;
+      }
     </style>
-    <button id="myButton">开始游戏</button>
-    <button id="myAudio">播放音乐</button>
+  </head>
+  <body>
+    <div class="controls">
+      <button id="myButton" class="btn">开始游戏</button>
+      <button id="endButton" class="btn">结束游戏</button>
+      <a href="/" class="btn">返回主页</a>
+    </div>
+    <div class="score-hud">分数：<span id="scoreValue">0</span></div>
     <div class="music-game" id="musicGame"></div>
+    <div id="resultModal" class="modal" aria-hidden="true">
+      <div class="modal-card">
+        <h2>游戏结束</h2>
+        <p>本局分数：<strong id="resultScore">0</strong></p>
+        <input id="playerName" type="text" maxlength="16" placeholder="输入名字" />
+        <div class="modal-actions">
+          <button id="uploadScore" class="btn">上传排行榜</button>
+          <button id="restartGame" class="btn">重新开始</button>
+        </div>
+        <p id="uploadHint" style="margin-top:0.25rem;color:#666;"></p>
+        <ul id="leaderboardList" class="leaderboard"></ul>
+      </div>
+    </div>
+    <script src="../services/ranking.ts"></script>
     <script src="../scripts/game.ts"></script>
   </body>
 </html>
