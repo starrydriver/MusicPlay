@@ -25,8 +25,10 @@ export {};
 
 const API_BASE = 'https://api.starrydriver.com';
 const SAVE_URL = `${API_BASE}/api/Score/save`;
-const STORAGE_KEY = 'musicplay-leaderboard';
 const PAGE_SIZE = 10;
+
+let cachedEntries: ScoreEntry[] = [];
+let currentPage = 1;
 
 async function diagnoseApis(): Promise<void> {
   const endpoints = [
@@ -71,19 +73,6 @@ function normalizeEntries(entries: unknown): ScoreEntry[] {
       };
     })
     .sort((left, right) => right.score - left.score || left.createdAt - right.createdAt);
-}
-
-function loadEntries(): ScoreEntry[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return normalizeEntries(raw ? JSON.parse(raw) : []);
-  } catch {
-    return [];
-  }
-}
-
-function saveEntries(entries: ScoreEntry[]): void {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
 }
 
 function getPageCount(entries: ScoreEntry[]): number {
@@ -156,10 +145,7 @@ async function submitScore(name: string, score: number): Promise<SubmitResult> {
       throw new Error(`保存失败：${response.status}`);
     }
 
-    const entries = loadEntries();
-    entries.push({ name: cleanName, score, createdAt: Date.now() });
-    saveEntries(entries.slice().sort((left, right) => right.score - left.score || left.createdAt - right.createdAt));
-    refresh();
+    await refresh();
 
     return { success: true };
   } catch (error) {
@@ -178,14 +164,12 @@ async function refresh(): Promise<void> {
   const nextButton = document.getElementById('rankingNext');
   const compactListEl = document.getElementById('leaderboardList');
 
-  const [remoteEntries, localEntries] = await Promise.all([loadRemoteEntries(), Promise.resolve(loadEntries())]);
-  const entries = remoteEntries.length ? remoteEntries : localEntries;
+  const entries = await loadRemoteEntries();
+  cachedEntries = entries;
 
   if (homeListEl instanceof HTMLElement) {
-    const pageKey = 'musicplay-ranking-page';
-    const storedPage = Number(localStorage.getItem(pageKey) ?? '1');
     const totalPages = getPageCount(entries);
-    const currentPage = Math.min(Math.max(Number.isFinite(storedPage) ? storedPage : 1, 1), totalPages);
+    currentPage = Math.min(Math.max(currentPage, 1), totalPages);
 
     renderList(
       entries,
@@ -199,14 +183,14 @@ async function refresh(): Promise<void> {
 
     if (prevButton instanceof HTMLButtonElement) {
       prevButton.onclick = () => {
-        localStorage.setItem(pageKey, String(Math.max(1, currentPage - 1)));
+        currentPage = Math.max(1, currentPage - 1);
         void refresh();
       };
     }
 
     if (nextButton instanceof HTMLButtonElement) {
       nextButton.onclick = () => {
-        localStorage.setItem(pageKey, String(Math.min(totalPages, currentPage + 1)));
+        currentPage = Math.min(totalPages, currentPage + 1);
         void refresh();
       };
     }
@@ -220,7 +204,7 @@ async function refresh(): Promise<void> {
 window.RankingService = {
   submitScore,
   refresh,
-  getEntries: loadEntries,
+  getEntries: () => cachedEntries,
 };
 
 document.addEventListener('DOMContentLoaded', () => {
